@@ -27,53 +27,43 @@ const Menu = ({ children }) => {
                             <span>Dashboard</span>
                         </NavLink>
                     </li>
-
-                    {/* Menu com Dropdow */}
-                    <ItemMenu title="Cadastro" icon="fa-solid fa-file-pen">
-                        <li>
-                            <NavLink className="link-menu" to="/register">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Clientes</span>
-                            </NavLink>
-                        </li>
-                    </ItemMenu>
-
-                    <ItemMenu title="Estoque" icon="fa-solid fa-dolly">
-                        <li>
-                            <NavLink className="link-menu" to="/stock">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Produtos</span>
-                            </NavLink>
-                        </li>
-                    </ItemMenu>
-
-                    <ItemMenu title="Movimentos" icon="fa-solid fa-arrows-spin">
-                        <li>
-                            <NavLink className="link-menu" to="/movements">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Ordem de serviço</span>
-                            </NavLink>
-                        </li>
-                    </ItemMenu>
-
-                    <ItemMenu title="Financeiro" icon="fa-solid fa-file-invoice-dollar">
-                        <li>
-                            <NavLink className="link-menu" to="/financial">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Caixa</span>
-                            </NavLink>
-                        </li>
-                    </ItemMenu>
-
-                    <ItemMenu title="Relatótios" icon="fa-solid fa-file-export">
-                        <li>
-                            <NavLink className="link-menu" to="/reports">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Listar vendas</span>
-                            </NavLink>
-                        </li>
-                    </ItemMenu>
-
+                    <li className="item-menu">
+                        <NavLink className="link-menu" to="/register">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Cadastro</span>
+                        </NavLink>
+                    </li>
+                    <li className="item-menu">
+                        <NavLink className="link-menu" to="/stock">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Estoque</span>
+                        </NavLink>
+                    </li>
+                    <li className="item-menu">
+                        <NavLink className="link-menu" to="/movements">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Movimentos</span>
+                        </NavLink>
+                    </li>
+                    <li className="item-menu">
+                        <NavLink className="link-menu" to="/financial">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Financeiro</span>
+                        </NavLink>
+                    </li>
+                    <li className="item-menu">
+                        <NavLink className="link-menu" to="/reports">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Relatótios</span>
+                        </NavLink>
+                    </li>
+                    <li className="item-menu">
+                        <NavLink className="link-menu" to="/settings">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Configurações</span>
+                        </NavLink>
+                    </li>
+ {/* Menu com Dropdow 
                     <ItemMenu title="Configurações" icon="fa-solid fa-gear">
                         <li>
                             <NavLink className="link-menu" to="/settings">
@@ -81,63 +71,9 @@ const Menu = ({ children }) => {
                                 <span>Empresa</span>
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="link-menu" to="/settings">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <span>Empresa</span>
-                            </NavLink>
-                        </li>
                     </ItemMenu>
 
-                    <li className="item-menu">
+ */}                   <li className="item-menu">
                         <NavLink className="link-menu" to="/login">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Sair</span>
