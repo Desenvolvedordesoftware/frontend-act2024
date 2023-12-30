@@ -1,4 +1,4 @@
-import ContentPage from "../components/Content/ContentPage";
+import ContentPage from "../../components/Content/ContentPage";
 import {
     BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
     RadialBarChart, RadialBar
@@ -10,7 +10,7 @@ import {
     Typography,
     Grid,
 } from '@mui/material';
-import { Div } from "../styles/stylesHome";
+import { Div } from "../../styles/stylesHome";
 
 const dataV = [
     { name: "Jan", value: 1100 },

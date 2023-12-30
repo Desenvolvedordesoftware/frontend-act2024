@@ -1,4 +1,4 @@
-import ContentPage from "../components/Content/ContentPage";
+import ContentPage from "../../components/Content/ContentPage";
 import {
     Button,
     Grid,
@@ -6,35 +6,44 @@ import {
 import Box from '@mui/material/Box';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
-const Settings = () => {
+const Register = () => {
     return (
-        <ContentPage titulo="Configurações" caminho={[{nome: "Configurações", link: "/settings"}]}>
-            <Box>
+        <ContentPage titulo="Cadastro" caminho={[{ nome: "Cadastro", link: "/register" }]}>
+           <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={6} >
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Empresa
+                                Clientes
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Sobre
+                                Fornecedores
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Gerenciar
+                                Plano de contas
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Mudar senha
+                                Funcionários
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Licença
+                                Marca / Fabricante
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Configurações
+                                Transportadora
+                            </Button>
+                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
+                                Pagamentos
+                            </Button>
+                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
+                                Serviços
+                            </Button>
+                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
+                                Operadores de caixa
                             </Button>
                         </Grid>
                     </Grid>
-                </Box>
+                </Box>    
         </ContentPage>
     );
 };
 
-export default Settings;
+export default Register;

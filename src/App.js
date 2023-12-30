@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Menu from "./components/Menu/Menu";
-import Home from "./pages/Home"
-import Financial from "./pages/Financial"
-import Login from "./pages/Login"
-import Movements from "./pages/Movements"
-import Register from "./pages/Register"
-import Reports from "./pages/Reports"
-import Settings from "./pages/Settings"
-import Stock from "./pages/Stock"
+import Home from "./pages/Home/Home";
+import Financial from "./pages/Financial/Financial";
+import Login from "./pages/Login/Login";
+import Movements from "./pages/Movements/Movements";
+import Register from "./pages/Register/Register";
+import Reports from "./pages/Reports/Reports";
+import Settings from "./pages/Settings/Settings";
+import Stock from "./pages/Stock/Stock";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import ContentPage from "../components/Content/ContentPage";
+import ContentPage from "../../components/Content/ContentPage";
 import {
     Button,
     Grid,
@@ -6,10 +6,10 @@ import {
 import Box from '@mui/material/Box';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
-const Register = () => {
+const Reports = () => {
     return (
-        <ContentPage titulo="Cadastro" caminho={[{ nome: "Cadastro", link: "/register" }]}>
-           <Box>
+        <ContentPage titulo="Relatórios" caminho={[{nome: "Relatórios", link: "/reports"}]}>
+            <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={6} >
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
@@ -19,31 +19,40 @@ const Register = () => {
                                 Fornecedores
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Plano de contas
+                                Ordem de Serviço
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Funcionários
+                                Produtos
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Marca / Fabricante
+                                DRE
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Transportadora
+                                Etiquetas
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Pagamentos
+                                Fluxo de Caixa
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Serviços
+                                Caixa
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Operadores de caixa
+                                Vendas
+                            </Button>
+                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
+                                Contas a Receber
+                            </Button>
+                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
+                                Contas a Pagar
+                            </Button>
+                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
+                                Rel. Tec. Serviço
                             </Button>
                         </Grid>
                     </Grid>
-                </Box>    
+                </Box>
         </ContentPage>
     );
 };
 
-export default Register;
+export default Reports;
