@@ -22,9 +22,6 @@ const Stock = () => {
                                 Baixar Estoque
                             </Button>
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
-                                Funcionários
-                            </Button>
-                            <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
                                 Grupos e Subgrupos
                             </Button>
                         </Grid>

@@ -46,8 +46,16 @@ const ListToReceive = () => {
             Contas a Receber
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+             Pagina em construção, aguardem!
           </Typography>
+          <Button
+            style={{ margin: "5px", width: "300px" }}
+            component="label"
+            variant="contained"
+            onClick={handleClose}
+          >
+            Fechar
+          </Button>
         </Box>
       </Modal>
     </div>

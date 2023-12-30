@@ -21,43 +21,43 @@ const Menu = ({ children }) => {
                 <ul className="conteudo-menu">
                     {/* Menu sem Dropdow */}
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/">
+                        <NavLink className="link-menu" to="/" onClick={handleMenu} >
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Dashboard</span>
                         </NavLink>
                     </li>
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/register">
+                        <NavLink className="link-menu" to="/register" onClick={handleMenu}>
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Cadastro</span>
                         </NavLink>
                     </li>
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/stock">
+                        <NavLink className="link-menu" to="/stock" onClick={handleMenu}>
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Estoque</span>
                         </NavLink>
                     </li>
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/movements">
+                        <NavLink className="link-menu" to="/movements" onClick={handleMenu}>
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Movimentos</span>
                         </NavLink>
                     </li>
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/financial">
+                        <NavLink className="link-menu" to="/financial" onClick={handleMenu}>
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Financeiro</span>
                         </NavLink>
                     </li>
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/reports">
+                        <NavLink className="link-menu" to="/reports" onClick={handleMenu}>
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Relatótios</span>
                         </NavLink>
                     </li>
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/settings">
+                        <NavLink className="link-menu" to="/settings" onClick={handleMenu}>
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Configurações</span>
                         </NavLink>
@@ -73,7 +73,7 @@ const Menu = ({ children }) => {
                     </ItemMenu>
 
  */}                   <li className="item-menu">
-                        <NavLink className="link-menu" to="/login">
+                        <NavLink className="link-menu" to="/login" onClick={handleMenu}>
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Sair</span>
                         </NavLink>

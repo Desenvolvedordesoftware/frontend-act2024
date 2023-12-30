@@ -19,7 +19,7 @@ const style = {
   p: 4,
 };
 
-const ListToPay = () => {
+const ListCustomers = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,7 +33,7 @@ const ListToPay = () => {
         startIcon={<AssignmentIndIcon />}
         onClick={handleOpen}
       >
-        Contas a Pagar
+        Clientes
       </Button>
       <Modal
         open={open}
@@ -42,24 +42,16 @@ const ListToPay = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Contas a Pagar
+          <Typography id="modal-modal-title" variant="h6" component="h2">clientesFo
+            Clientes
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Pagina em construção, aguardem!
           </Typography>
-          <Button
-            style={{ margin: "5px", width: "300px" }}
-            component="label"
-            variant="contained"
-            onClick={handleClose}
-          >
-            Fechar
-          </Button>
         </Box>
       </Modal>
     </div>
   );
 }
 
-export default ListToPay;
+export default ListCustomers;

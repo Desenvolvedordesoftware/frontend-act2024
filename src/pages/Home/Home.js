@@ -56,10 +56,11 @@ const data = [
 ];
 
 const style = {
-    top: '40%',
-    right: 30,
+    top: '50%',
+    right: 80,
     transform: 'translate(0, -50%)',
     lineHeight: '24px',
+    
 };
 
 const Home = () => {
@@ -91,8 +92,8 @@ const Home = () => {
                 </Grid>
             </div>
             
-            <Div>
-                <Container>
+            <Div style={{overflow:"auto"}}>
+                <Container >
                     <Grid container direction="column" padding={1} spacing={2}>
 
                         <Grid container item direction="row" spacing={5}>
@@ -101,6 +102,7 @@ const Home = () => {
                                 <BarChart
                                     width={450}
                                     height={300}
+                                    fonte-barSize={10}
                                     data={dataV}
                                     margin={{
                                         top: 5,
@@ -108,6 +110,7 @@ const Home = () => {
                                         left: -20,
                                         bottom: 5,
                                     }}
+                                    
                                 >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
