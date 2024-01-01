@@ -6,6 +6,7 @@ import Button from "../../components/Button/index";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
 const Login = () => {
     const { signin } = useAuth();
@@ -52,8 +53,15 @@ const Login = () => {
                 />
                 <Button Text="Entrar" onClick={handleLogin}/>
                 <div>
-                    <p>Não possui conta? <Link style={{color:"#02b3d4"}} to="/home">&nbsp;WhatSapp</Link></p>
-                    
+                    <p>Não possui conta? <Link style={{color:"#02b3d4"}} to="https://w.app/hHT9Ee">&nbsp;WhatSapp</Link></p>
+                    <FloatingWhatsApp 
+                      phoneNumber="94992565280"
+                      avatar="./images/LogoEmpresa.png"
+                      accountName="ACThauros"
+                      statusMessage="Sistemas de Gestão Comercial"
+                      chatMessage="Agradece seu contato. Como podemos ajudar?"
+                      placeholder="Digite uma mensagem"
+                    />
                 </div>
             </From>
            <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />

@@ -12,7 +12,7 @@ import useAuth from "./hooks/useAuth";
 const Private = ({ Item }) => {
   const { signed } = useAuth();
 
-  return signed > 0 ? <Item /> : <Home />;
+  return signed > 0 ? <Item /> : <Login />;
 };
 
 function App() {
