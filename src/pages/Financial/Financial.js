@@ -1,4 +1,5 @@
 import ContentPage from "../../components/Content/ContentPage";
+import Menu from "../../components/Menu/Menu";
 import { useEffect, useState } from "react";
 import {
     Grid,
@@ -29,6 +30,8 @@ const Financial = () => {
       }, [setBox]);
 
     return (
+    <>
+      <Menu>
         <ContentPage titulo="Financeiro"  caminho={[{nome: "Financeiro", link: "/financial"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -42,6 +45,8 @@ const Financial = () => {
                 
              <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </ContentPage>
+        </Menu>
+        </>
     );
 };
 

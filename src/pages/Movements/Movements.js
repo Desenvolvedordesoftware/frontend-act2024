@@ -1,4 +1,5 @@
 import ContentPage from "../../components/Content/ContentPage";
+import Menu from "../../components/Menu/Menu";
 import {
     Button,
     Grid,
@@ -8,6 +9,8 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
 const Movements = () => {
     return (
+        <>
+        <Menu>
         <ContentPage titulo="Movimentos" caminho={[{nome: "Movimentos", link: "/movements"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -31,6 +34,8 @@ const Movements = () => {
                     </Grid>
                 </Box>
         </ContentPage>
+        </Menu>
+        </>
     );
 };
 

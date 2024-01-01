@@ -5,9 +5,11 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import Menu from "../../components/Menu/Menu";
 
 const Stock = () => {
     return (
+        <> <Menu>
         <ContentPage titulo="Estoque" caminho={[{nome: "Estoque", link: "/stock"}]}>
                 <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -28,6 +30,7 @@ const Stock = () => {
                     </Grid>
                 </Box>
         </ContentPage>
+        </Menu> </>
     );
 };
 

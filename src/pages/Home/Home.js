@@ -1,4 +1,5 @@
 import ContentPage from "../../components/Content/ContentPage";
+import Menu from "../../components/Menu/Menu";
 import {
     BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
     RadialBarChart, RadialBar
@@ -65,6 +66,8 @@ const style = {
 
 const Home = () => {
     return (
+        <>
+        <Menu>
         <ContentPage titulo="Dashboard" caminho={[{ nome: "Dashboard", link: "/" }]}>
             <div style={{display:"flex", justifyContent:"space-between"}}>
                 <Grid container direction="column" padding={1} spacing={2}>
@@ -155,6 +158,8 @@ const Home = () => {
                 </Container>
             </Div>
         </ContentPage>
+        </Menu>
+        </>
     );
 };
 

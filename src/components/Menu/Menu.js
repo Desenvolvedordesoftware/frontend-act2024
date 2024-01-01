@@ -21,7 +21,7 @@ const Menu = ({ children }) => {
                 <ul className="conteudo-menu">
                     {/* Menu sem Dropdow */}
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/" onClick={handleMenu} >
+                        <NavLink className="link-menu" to="/home" onClick={handleMenu} >
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Dashboard</span>
                         </NavLink>
@@ -73,7 +73,7 @@ const Menu = ({ children }) => {
                     </ItemMenu>
 
  */}                   <li className="item-menu">
-                        <NavLink className="link-menu" to="/login" onClick={handleMenu}>
+                        <NavLink className="link-menu" to="/" onClick={handleMenu}>
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Sair</span>
                         </NavLink>

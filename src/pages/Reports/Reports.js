@@ -5,9 +5,11 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import Menu from "../../components/Menu/Menu";
 
 const Reports = () => {
     return (
+        <> <Menu>
         <ContentPage titulo="Relatórios" caminho={[{nome: "Relatórios", link: "/reports"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -52,6 +54,7 @@ const Reports = () => {
                     </Grid>
                 </Box>
         </ContentPage>
+        </Menu> </>
     );
 };
 
