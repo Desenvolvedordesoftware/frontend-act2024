@@ -17,7 +17,7 @@ const Login = () => {
     const [error, setError] = useState("");
 
     const handleLogin = () => {
-  debugger   
+ 
         if (!email | !senha) {
             toast.warn("Preecha todos os campos!");
             return;

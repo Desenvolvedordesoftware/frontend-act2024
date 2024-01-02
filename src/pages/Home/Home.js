@@ -1,10 +1,12 @@
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
-import {
+import Box from '@mui/material/Box';
+/*import {
     BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
     RadialBarChart, RadialBar
-} from 'recharts';
-
+} from 'recharts';*/
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
     Container,
@@ -12,57 +14,155 @@ import {
     Grid,
 } from '@mui/material';
 import { Div } from "../../styles/stylesHome";
+import { BarChart } from '@mui/x-charts/BarChart';
 
-const dataV = [
-    { name: "Jan", value: 1100 },
-    { name: "Fev", value: 3911 },
-    { name: "Mar", value: 5120 },
-    { name: "Abr", value: 4913 },
-    { name: "Mai", value: 6140 },
-    { name: "Jun", value: 2915 },
-    { name: "Jul", value: 1160 },
-    { name: "Ago", value: 917 },
-    { name: "Set", value: 7180 },
-    { name: "Out", value: 2919 },
-    { name: "Nov", value: 9200 },
-    { name: "Dez", value: 10921 },
-]
+////////////////////////////////////////
+const chartSetting = {
+    xAxis: [
+      {
+        label: 'Valor R$ 1.415,00',
+      },
+    ],
+    width: 400,
+    height: 300,
+  };
 
-const data = [
-    {
-        name: 'Dinheiro',
-        value: 950,
-        fill: '#82ca9d',
-    },
-    {
-        name: 'Pix',
-        value: 1400,
-        fill: '#83a6ed',
-    },
-    {
-        name: 'Cartão débito',
-        value: 800,
-        fill: '#8dd1e1',
-    },
-    {
-        name: 'Cartão crédito',
-        value: 1300,
-        fill: '#a4de6c',
-    },
-    {
-        name: 'Aprazo',
-        value: 1800,
-        fill: '#8884d8',
-    },
-];
+  const chartSettingV = {
+    xAxis: [
+      {
+        label: 'Valor R$ 188,00',
+      },
+    ],
+    width: 400,
+    height: 300,
+  };
 
-const style = {
-    top: '50%',
-    right: 80,
-    transform: 'translate(0, -50%)',
-    lineHeight: '24px',
-    
-};
+  const data = [
+    {
+      london: 59,
+      paris: 57,
+      newYork: 86,
+      seoul: 210,
+      month: 'Dinh',
+    },
+    {
+      london: 50,
+      paris: 52,
+      newYork: 78,
+      seoul: 28,
+      month: 'Pix',
+    },
+    {
+      london: 47,
+      paris: 53,
+      newYork: 106,
+      seoul: 41,
+      month: 'C.D',
+    },
+    {
+      london: 54,
+      paris: 56,
+      newYork: 92,
+      seoul: 73,
+      month: 'C.C',
+    },
+    {
+      london: 61,
+      paris: 70,
+      newYork: 103,
+      seoul: 25,
+      month: 'Ap',
+    },
+  ];
+
+  const dataset = [
+    {
+      london: 59,
+      paris: 57,
+      newYork: 86,
+      seoul: 21,
+      month: 'Jan',
+    },
+    {
+      london: 50,
+      paris: 52,
+      newYork: 78,
+      seoul: 28,
+      month: 'Fev',
+    },
+    {
+      london: 47,
+      paris: 53,
+      newYork: 106,
+      seoul: 41,
+      month: 'Mar',
+    },
+    {
+      london: 54,
+      paris: 56,
+      newYork: 92,
+      seoul: 73,
+      month: 'Abr',
+    },
+    {
+      london: 57,
+      paris: 69,
+      newYork: 92,
+      seoul: 99,
+      month: 'Mai',
+    },
+    {
+      london: 60,
+      paris: 63,
+      newYork: 103,
+      seoul: 144,
+      month: 'Jun',
+    },
+    {
+      london: 59,
+      paris: 60,
+      newYork: 105,
+      seoul: 319,
+      month: 'Jul',
+    },
+    {
+      london: 65,
+      paris: 60,
+      newYork: 106,
+      seoul: 249,
+      month: 'Ago',
+    },
+    {
+      london: 51,
+      paris: 51,
+      newYork: 95,
+      seoul: 131,
+      month: 'Set',
+    },
+    {
+      london: 60,
+      paris: 65,
+      newYork: 97,
+      seoul: 55,
+      month: 'Out',
+    },
+    {
+      london: 67,
+      paris: 64,
+      newYork: 76,
+      seoul: 48,
+      month: 'Nov',
+    },
+    {
+      london: 61,
+      paris: 70,
+      newYork: 103,
+      seoul: 25,
+      month: 'Dec',
+    },
+  ];
+  
+  const valueFormatter = (value: number) => `R$ ${value}`;
 
 const Home = () => {
     return (
@@ -97,61 +197,29 @@ const Home = () => {
             
             <Div style={{overflow:"auto"}}>
                 <Container >
-                    <Grid container direction="column" padding={1} spacing={2}>
+                    <Grid >
 
-                        <Grid container item direction="row" spacing={5}>
+                        <Grid container item direction="row" spacing={1}>
                             <Grid item xs={12} sm={12} md={6}>
                                 <Typography style={{ color: "#02b3d4" }} variant='h6'>Vendas por mês</Typography>
                                 <BarChart
-                                    width={450}
-                                    height={300}
-                                    fonte-barSize={10}
-                                    data={dataV}
-                                    margin={{
-                                        top: 5,
-                                        right: 15,
-                                        left: -20,
-                                        bottom: 5,
-                                    }}
-                                    
-                                >
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Bar dataKey="value" fill="#82ca9d" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                                </BarChart>
+                                dataset={dataset}
+                                yAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+                                series={[{ dataKey: 'seoul', label: '2023', valueFormatter }]}
+                                layout="horizontal"
+                                {...chartSetting}
+                                />
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={6}>
                                 <Typography style={{ color: "#02b3d4" }} variant='h6'>Vendas por forma de pagamento</Typography>
-                                <RadialBarChart
-                                    width={500}
-                                    height={300}
-                                    cx={150}
-                                    cy={150}
-                                    innerRadius={20}
-                                    outerRadius={140}
-                                    barSize={10}
-                                    data={data}
-                                >
-                                    <RadialBar
-                                        minAngle={15}
-                                        label={{ position: "insideStart", fill: "#fff" }}
-                                        background
-                                        clockWise
-                                        dataKey="value"
-                                    />
-                                    <Legend
-                                        iconSize={10}
-                                        width={140}
-                                        height={140}
-                                        layout="vertical"
-                                        verticalAlign="middle"
-                                        wrapperStyle={style}
-                                    />
-                                </RadialBarChart>
+                                <BarChart
+                                dataset={data}
+                                yAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+                                series={[{ dataKey: 'seoul', label: '2023', valueFormatter }]}
+                                layout="horizontal"
+                                {...chartSettingV}
+                                />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -159,6 +227,8 @@ const Home = () => {
             </Div>
         </ContentPage>
         </Menu>
+        
+        <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </>
     );
 };

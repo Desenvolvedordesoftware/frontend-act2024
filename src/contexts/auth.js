@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import { toast } from "react-toastify";
 
 export const AuthContext = createContext({});
 
-var Email = "";
-var Password = "";
-var Name = "";
+var Email = "wilson@acthauros.com.br";
+var Password = "728125";
+var Name = "Wilson";
 var Tokem = "";
 
 export const AuthProvider = ({ children }) => {
@@ -26,12 +26,12 @@ export const AuthProvider = ({ children }) => {
    }, []);
 
    const signin = (email, password) => {
-debugger
       const handleSubmit = async () => {
-
+/*
          try {
             const res = await axios.get("http://192.168.1.10:8800/users/" + email);
-
+            
+            console.log(res.data)
 
             if (res.data.length === 0) {
                return toast.warn("Falha de Autenticação!");
@@ -55,7 +55,7 @@ debugger
          } catch (error) {
             toast.error(error);
          }
-
+*/
 
          if (password === Password) {
 
