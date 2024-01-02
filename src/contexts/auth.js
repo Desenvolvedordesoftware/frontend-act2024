@@ -1,13 +1,14 @@
 import { createContext, useEffect, useState } from "react";
-//import axios from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 export const AuthContext = createContext({});
 
-var Email = "wilson@acthauros.com.br";
-var Password = "728125";
-var Name = "Wilson";
+var Email = "";
+var Password = "";
+var Name = "";
 var Tokem = "";
+
 
 export const AuthProvider = ({ children }) => {
    const [user, setUser] = useState();
@@ -27,9 +28,9 @@ export const AuthProvider = ({ children }) => {
 
    const signin = (email, password) => {
       const handleSubmit = async () => {
-/*
+debugger
          try {
-            const res = await axios.get("http://192.168.1.10:8800/users/" + email);
+            const res = await axios.get("http://api.acthauros.com.br/users/" + email);
             
             console.log(res.data)
 
@@ -55,7 +56,7 @@ export const AuthProvider = ({ children }) => {
          } catch (error) {
             toast.error(error);
          }
-*/
+
 
          if (password === Password) {
 

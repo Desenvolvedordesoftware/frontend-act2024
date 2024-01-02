@@ -28,6 +28,7 @@ function App() {
             <Route exact  path="/stock" element={<Private Item={<Stock/>}/>} />
             <Route exact  path="*" element={<Login />} />
             <Route exact  path="/" element={<Login />} />
+            <Route exact  path="%" element={<Login />} />
           </Routes>
       </BrowserRouter>
   );
