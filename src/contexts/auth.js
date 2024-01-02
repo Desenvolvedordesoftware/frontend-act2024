@@ -28,11 +28,9 @@ export const AuthProvider = ({ children }) => {
 
    const signin = (email, password) => {
       const handleSubmit = async () => {
-debugger
+
          try {
             const res = await axios.get("http://api.acthauros.com.br/users/" + email);
-            
-            console.log(res.data)
 
             if (res.data.length === 0) {
                return toast.warn("Falha de Autenticação!");
