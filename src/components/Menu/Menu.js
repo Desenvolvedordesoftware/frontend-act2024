@@ -3,9 +3,10 @@ import { NavLink } from "react-router-dom";
 import Navbar from "../Nabar/Navbar";
 import "./Menu.style.css";
 import { Page } from "../../styles/stylesHome";
+import useAuth from "../../hooks/useAuth";
 
 const Menu = ({ children }) => {
-
+    const { signout } = useAuth();
     const [open, setOpen] = useState('fechado');
 
     const handleMenu = () => {
@@ -73,7 +74,7 @@ const Menu = ({ children }) => {
                     </ItemMenu>
 
  */}                   <li className="item-menu">
-                        <NavLink className="link-menu" to="/" onClick={handleMenu}>
+                        <NavLink className="link-menu" to="/" onClick={() => [signout(), handleMenu]}>
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Sair</span>
                         </NavLink>
