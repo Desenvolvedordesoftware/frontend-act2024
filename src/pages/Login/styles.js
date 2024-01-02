@@ -43,7 +43,7 @@ export const From = styled.form`
   height: 100vh;
   width: 100vw;
   max-width: 500px;
-  max-height: 600px;
+  max-height: 100%;
   gap: 10px;
 
   h1 {
