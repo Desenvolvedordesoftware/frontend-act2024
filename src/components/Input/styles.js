@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InputCustomizado = styled.input`
   color: #000;
-  font-size: 16px;
+  font-size: 15px;
   background-color: transparent;
   border: 2px solid #02b3d4;
   border-radius: 8px;
@@ -14,7 +14,7 @@ export const InputCustomizado = styled.input`
 
    input::placeholder{
     color: #fff;
-    font-size: 12px;
+    font-size: 15px;
     opacity: 0.7;
    }
 `;

@@ -51,6 +51,11 @@ export const From = styled.form`
     font-size: 20px;
   }
 
+  h6 {
+    color: white;
+    font-size: 14px;
+  }
+
   p {
     color: white;
     font-size: 16px;
