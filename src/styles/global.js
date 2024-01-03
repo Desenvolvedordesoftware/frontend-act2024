@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: #f0f2f5;
   font-size: 12px;

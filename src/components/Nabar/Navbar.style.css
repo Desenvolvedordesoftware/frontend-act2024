@@ -2,6 +2,11 @@
     box-shadow: 2px 0px 9px 2px #242a38;
     padding: 10px 20px;
     background-color: #FFFFFF;
+    z-index: 4;
+    top:0;
+    left: 0;
+    position: fixed;
+    width: 100%;
 }
 
 .navbar .user-ciclo {
