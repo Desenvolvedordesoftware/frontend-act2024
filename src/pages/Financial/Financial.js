@@ -18,7 +18,7 @@ const Financial = () => {
     const getBox = async () => {
         try {
           const res = await axios.get("http://api.acthauros.com.br/box/");
-          console.log(res.data.stmt);
+          
           setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
         } catch (error) {
           toast.error(error);

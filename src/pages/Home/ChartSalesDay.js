@@ -23,7 +23,7 @@ const StyledText = styled('text')(({ theme }) => ({
   fill: theme.palette.text.primary,
   textAnchor: 'middle',
   dominantBaseline: 'central',
-  fontSize: 20,
+  fontSize: 16,
 }));
 
 function PieCenterLabel({ children }: { children: React.ReactNode }) {
@@ -50,7 +50,7 @@ export default function ChartSalesDay() {
       sx={{
         [`& .${pieArcLabelClasses.root}`]: {
           fill: 'white',
-          fontSize: 14,
+          fontSize: 12,
         },
       }}
       height={200}
