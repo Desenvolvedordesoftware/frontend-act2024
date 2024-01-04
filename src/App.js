@@ -1,32 +1,36 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Menu from "./components/Menu/Menu";
-import Home from "./pages/Home"
-import Financial from "./pages/Financial"
-import Login from "./pages/Login"
-import Movements from "./pages/Movements"
-import Register from "./pages/Register"
-import Reports from "./pages/Reports"
-import Settings from "./pages/Settings"
-import Stock from "./pages/Stock"
+import Home from "./pages/Home/Home";
+import Financial from "./pages/Financial/Financial";
+import Login from "./pages/Login/Login";
+import Movements from "./pages/Movements/Movements";
+import Register from "./pages/Register/Register";
+import Reports from "./pages/Reports/Reports";
+import Settings from "./pages/Settings/Settings";
+import Stock from "./pages/Stock/Stock";
+import useAuth from "./hooks/useAuth";
+
+const Private = ({ Item }) => {
+  const { signed } = useAuth();
+
+  return signed > 0 ? Item : <Login />;
+}; 
 
 function App() {
   return (
-    <div className="app">
       <BrowserRouter>
-        <Menu>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/financial" element={<Financial />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/movements" element={<Movements />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/stock" element={<Stock />} />
+            <Route exact path="/" element={<Private Item={<Home/>}/>} />
+            <Route exact path="*" element={<Private Item={<Home/>}/>} />
+            <Route exact path="%" element={<Private Item={<Home/>}/>} />
+            <Route exact path="/financial" element={<Private Item={<Financial/>}/>} />
+            <Route exact  path="/movements" element={<Private Item={<Movements/>}/>} />
+            <Route exact  path="/register" element={<Private Item={<Register/>}/>} />
+            <Route exact  path="/reports" element={<Private Item={<Reports/>}/>} />
+            <Route exact  path="/settings" element={<Private Item={<Settings/>}/>} />
+            <Route exact  path="/stock" element={<Private Item={<Stock/>}/>} />
+            <Route exact  path="/login" element={<Login />} />
           </Routes>
-        </Menu>
       </BrowserRouter>
-    </div>
   );
 }
 
