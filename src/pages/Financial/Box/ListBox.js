@@ -5,7 +5,6 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
-import Input from "../../../components/Input";
 
 const Div = styled.div`
   display: flex;

@@ -19,16 +19,16 @@ function App() {
   return (
       <BrowserRouter>
           <Routes>
-            <Route exact path="/home" element={<Private Item={<Home/>}/>} />
+            <Route exact path="/" element={<Private Item={<Home/>}/>} />
+            <Route exact path="*" element={<Private Item={<Home/>}/>} />
+            <Route exact path="%" element={<Private Item={<Home/>}/>} />
             <Route exact path="/financial" element={<Private Item={<Financial/>}/>} />
             <Route exact  path="/movements" element={<Private Item={<Movements/>}/>} />
             <Route exact  path="/register" element={<Private Item={<Register/>}/>} />
             <Route exact  path="/reports" element={<Private Item={<Reports/>}/>} />
             <Route exact  path="/settings" element={<Private Item={<Settings/>}/>} />
             <Route exact  path="/stock" element={<Private Item={<Stock/>}/>} />
-            <Route exact  path="*" element={<Login />} />
-            <Route exact  path="/" element={<Login />} />
-            <Route exact  path="%" element={<Login />} />
+            <Route exact  path="/login" element={<Login />} />
           </Routes>
       </BrowserRouter>
   );

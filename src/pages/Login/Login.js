@@ -63,7 +63,7 @@ const Login = () => {
                       placeholder="Digite uma mensagem"
                     />
                 </div>
-                 <h6>Versão: 0.0.0.48</h6>
+                 <h6>Versão: 0.1.51</h6>
             </From>
            <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </Container>

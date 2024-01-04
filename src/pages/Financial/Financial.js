@@ -1,6 +1,7 @@
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
 import { useEffect, useState } from "react";
+import { url } from "../../function/FunctionR";
 import {
     Grid,
 } from '@mui/material';
@@ -17,7 +18,7 @@ const Financial = () => {
 
     const getBox = async () => {
         try {
-          const res = await axios.get("http://api.acthauros.com.br/box/");
+          const res = await axios.get(url+"/box/");
           
           setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
         } catch (error) {

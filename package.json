@@ -1,7 +1,12 @@
 {
-  "name": "dashboard",
-  "version": "0.1.0",
+  "name": "acthauros-app",
+  "version": "0.1.51",
   "private": true,
+  "homepage": "https://acthauros.com.br",
+  "author": {
+    "name": "Wilson C. Brito",
+    "email": "wilson.engenhariasoftware@gmail.com"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",

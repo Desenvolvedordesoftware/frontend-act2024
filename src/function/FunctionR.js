@@ -2,4 +2,4 @@ export const Codificar = Date.now();
 export const ChaveVenda = Codificar;
 
 
-export const url = "http://api.acthauros.com.br"
+export const url = "https://acthauros.com.br/api"
