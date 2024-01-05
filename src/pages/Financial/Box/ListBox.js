@@ -95,7 +95,7 @@ const style = {
   p: 1,
 };
 
-const ListBox = ({ box, setBox }) => {
+const ListBox = ({ box, getBox }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -138,7 +138,7 @@ const ListBox = ({ box, setBox }) => {
                   style={{ margin: "5px", width: "100px" }}
                   component="label"
                   variant="contained"
-                  onClick={handleClose}
+                  onClick={getBox}
                 >
                   Filtrar
                 </Button>
