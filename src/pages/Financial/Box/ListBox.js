@@ -95,11 +95,11 @@ const style = {
   p: 1,
 };
 
-const ListBox = ({ box, getBox }) => {
+const ListBox = ({ box, getBox, setData, data }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  var valor = 0
   return (
     <div>
       <Button
@@ -133,7 +133,10 @@ const ListBox = ({ box, getBox }) => {
               </Button>
             </InputArea>
             <div>
-              <DataFilter type="date" sx={{width:"10px"}} />
+              <DataFilter 
+              type="date" 
+              value={data}
+              onChange={(e) => [setData(e.target.value)]} />
                 <Button
                   style={{ margin: "5px", width: "100px" }}
                   component="label"
@@ -151,7 +154,7 @@ const ListBox = ({ box, getBox }) => {
                         Entradas
                       </Typography>
                       <Typography style={{ color: "#000" }} variant="h6">
-                        R$ 4.786.45
+                        R$ {valor}
                       </Typography>
                     </Div>
                   </Grid>
@@ -161,7 +164,7 @@ const ListBox = ({ box, getBox }) => {
                         Saídas
                       </Typography>
                       <Typography style={{ color: "red" }} variant="h6">
-                        R$ 2.286.35
+                        R$ {valor}
                       </Typography>
                     </Div>
                   </Grid>
@@ -171,7 +174,7 @@ const ListBox = ({ box, getBox }) => {
                         Saldo
                       </Typography>
                       <Typography style={{ color: "#161b" }} variant="h6">
-                        R$ 2.500,10
+                        R$ {valor}
                       </Typography>
                     </Div>
                   </Grid>

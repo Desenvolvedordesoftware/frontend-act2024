@@ -1,7 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
-import { useEffect, useState } from "react";
-import { url } from "../../function/FunctionR";
+import { url, codCompany } from "../../function/FunctionR";
 import {
     Grid,
 } from '@mui/material';
@@ -16,10 +16,22 @@ import axios from "axios";
 const Financial = () => {
     const [box, setBox] = useState([]);
 
+    function adicionaZero(numero){
+      if (numero <= 9) 
+          return "0" + numero;
+      else
+          return numero; 
+      }
+      let dataAtual = new Date(); //29/01/2020
+      let dataAtualFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "-" + adicionaZero(dataAtual.getDate().toString()));
+
+    const [data, setData] = useState(dataAtualFormatada);
+
+    
     const getBox = async () => {
         try {
-          const res = await axios.get(url+"/box/");
-          
+          const res = await axios.get(url+"/box/"+codCompany+"/"+data);
+        
           setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
         } catch (error) {
           toast.error(error);
@@ -28,7 +40,7 @@ const Financial = () => {
     
       useEffect(() => {
         getBox();
-      }, [setBox]);
+      },[]);
 
     return (
     <>
@@ -37,7 +49,9 @@ const Financial = () => {
             <Box >
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={6} >
-                          <ListBox box={box} setBox={setBox} getBox={getBox}/>
+                          <ListBox 
+                          box={box} setBox={setBox} getBox={getBox} 
+                          setData={setData} data={data} />
                           <ListToPay/>
                           <ListToReceive/>
                         </Grid>
