@@ -29,17 +29,11 @@ const Table = styled.table`
   backdrop-filter: blur(5.5px);
 `;
 
-export const Thead = styled.thead`
+export const Thead = styled.thead``;
 
-`;
+export const Tbody = styled.tbody``;
 
-export const Tbody = styled.tbody`
-
-`;
-
-export const Tr = styled.tr`
-
-`;
+export const Tr = styled.tr``;
 
 export const Th = styled.th`
   text-align: start;
@@ -82,8 +76,10 @@ const InputArea = styled.div`
 `;
 
 const style = {
+  margin: 0,
+  padding: 0,
+  boxSizing: "border-box",
   position: "absolute",
-  overflowY: "scroll",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -99,7 +95,8 @@ const ListBox = ({ box, getBox, setData, data }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  var valor = 0
+  var valor = 0;
+
   return (
     <div>
       <Button
@@ -119,24 +116,26 @@ const ListBox = ({ box, getBox, setData, data }) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <InputArea>
-            <Typography style={{ color: "#000" }} >
-                        Selecionar uma data
-              </Typography>
-              <Button
-                style={{ margin: "5px", width: "100px" }}
-                component="label"
-                variant="contained"
-                onClick={handleClose}
-              >
-                Fechar
-              </Button>
-            </InputArea>
             <div>
-              <DataFilter 
-              type="date" 
-              value={data}
-              onChange={(e) => [setData(e.target.value)]} />
+              <InputArea>
+                <Typography style={{ color: "#000" }}>
+                  Selecionar uma data
+                </Typography>
+                <Button
+                  style={{ margin: "5px", width: "100px" }}
+                  component="label"
+                  variant="contained"
+                  onClick={handleClose}
+                >
+                  Fechar
+                </Button>
+              </InputArea>
+              <div>
+                <DataFilter
+                  type="date"
+                  value={data}
+                  onChange={(e) => [setData(e.target.value)]}
+                />
                 <Button
                   style={{ margin: "5px", width: "100px" }}
                   component="label"
@@ -145,8 +144,8 @@ const ListBox = ({ box, getBox, setData, data }) => {
                 >
                   Filtrar
                 </Button>
-            </div>
-            <div >
+              </div>
+              <div>
                 <Grid container item direction="row" spacing={2}>
                   <Grid item xs={12} sm={8} md={4}>
                     <Div style={{ padding: "10px" }}>
@@ -179,28 +178,44 @@ const ListBox = ({ box, getBox, setData, data }) => {
                     </Div>
                   </Grid>
                 </Grid>
+              </div>
             </div>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 1 }}>
-            <Table >
-              <Thead>
-                <Tr>
-                  <Th>HISTORICO</Th>
-                  <Th></Th>
-                  <Th>ValorR$</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {box.map((item, i) => (
-                  <Tr key={i}>
-                    <Td width="65%">{item.HISTORICO}</Td>
-                    <Td>=</Td>
-                    <Td width="30%">R${item.VALOR}</Td>
+          <div>
+            <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+              <Table>
+                <Thead>
+                  <Tr
+                    style={{
+                      display: "flex",
+                      gap: "100px",
+                    }}
+                  >
+                    <Th>HISTORICO</Th>
+                    <Th></Th>
+                    <Th>ValorR$</Th>
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </Typography>
+                </Thead>
+                <Tbody
+                  style={{
+                    position: "fixed",
+                    marginTop: "10px",
+                    width: "100%",
+                    height: "450px",
+                    overflowY: "scroll",
+                  }}
+                >
+                  {box.map((item, i) => (
+                    <Tr key={i}>
+                      <Td width="80%">{item.HISTORICO}</Td>
+                      <Td>=</Td>
+                      <Td width="20%">R$ {item.VALOR}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </Typography>
+          </div>
         </Box>
       </Modal>
     </div>
