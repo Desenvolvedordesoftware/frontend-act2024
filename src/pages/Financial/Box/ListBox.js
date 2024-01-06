@@ -31,7 +31,15 @@ const Table = styled.table`
 
 export const Thead = styled.thead``;
 
-export const Tbody = styled.tbody``;
+export const Tbody = styled.tbody`
+  position: fixed;
+  margin-top: 10px;
+  width: 100%;
+  height: 250px;
+  outline: auto;
+  overflow-y: scroll;
+  z-index: 5;
+`;
 
 export const Tr = styled.tr``;
 
@@ -76,10 +84,10 @@ const InputArea = styled.div`
 `;
 
 const style = {
-  margin: 0,
-  padding: 0,
+  marginLeft: .20,
   boxSizing: "border-box",
   position: "absolute",
+  overflowWrap: "break-word",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -186,25 +194,13 @@ const ListBox = ({ box, getBox, setData, data }) => {
               <Table>
                 <Thead>
                   <Tr
-                    style={{
-                      display: "flex",
-                      gap: "100px",
-                    }}
                   >
-                    <Th>HISTORICO</Th>
+                    <Th width="79%">HISTORICO</Th>
                     <Th></Th>
-                    <Th>ValorR$</Th>
+                    <Th width="21%">ValorR$</Th>
                   </Tr>
                 </Thead>
-                <Tbody
-                  style={{
-                    position: "fixed",
-                    marginTop: "10px",
-                    width: "100%",
-                    height: "450px",
-                    overflowY: "scroll",
-                  }}
-                >
+                <Tbody >
                   {box.map((item, i) => (
                     <Tr key={i}>
                       <Td width="80%">{item.HISTORICO}</Td>
