@@ -48,7 +48,7 @@ const Financial = () => {
         <ContentPage titulo="Financeiro"  caminho={[{nome: "Financeiro", link: "/financial"}]}>
             <Box >
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={6} >
+                        <Grid item xs={8} >
                           <ListBox 
                           box={box} setBox={setBox} getBox={getBox} 
                           setData={setData} data={data} />

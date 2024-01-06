@@ -12,8 +12,8 @@ const Reports = () => {
         <> <Menu>
         <ContentPage titulo="Relatórios" caminho={[{nome: "Relatórios", link: "/reports"}]}>
             <Box>
-                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={6} >
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+                        <Grid item xs={8} >
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
                                 Clientes
                             </Button>

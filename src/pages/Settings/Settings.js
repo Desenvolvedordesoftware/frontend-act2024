@@ -13,7 +13,7 @@ const Settings = () => {
         <ContentPage titulo="Configurações" caminho={[{nome: "Configurações", link: "/settings"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={6} >
+                        <Grid item xs={8} >
                             <Button style={{margin:"5px", width:"300px"}} component="label" variant="contained" startIcon={<AssignmentIndIcon />}>
                                 Empresa
                             </Button>

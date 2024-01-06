@@ -19,13 +19,17 @@ const getArcLabel = (params: DefaultizedPieValueType) => {
   const percent = params.value / TOTAL;
   return `${(percent * 100).toFixed(0)}%`;
 };
+
 const StyledText = styled('text')(({ theme }) => ({
   fill: theme.palette.text.primary,
   textAnchor: 'middle',
   dominantBaseline: 'central',
-  fontSize: 16,
+  fontSize: 20,
 }));
-
+const size = {
+  width: 350,
+  height: 200,
+};
 function PieCenterLabel({ children }: { children: React.ReactNode }) {
   const { width, height, left, top } = useDrawingArea();
   return (
@@ -44,16 +48,17 @@ export default function ChartSalesDay() {
           endAngle: 360,
           data,
           arcLabel: getArcLabel,
-          innerRadius: 50
+          innerRadius: 50,
         },
       ]}
       sx={{
         [`& .${pieArcLabelClasses.root}`]: {
           fill: 'white',
-          fontSize: 12,
+          fontSize: 12
         },
       }}
       height={200}
+      {...size}
     >
       <PieCenterLabel>Hoje</PieCenterLabel>
     </PieChart>
