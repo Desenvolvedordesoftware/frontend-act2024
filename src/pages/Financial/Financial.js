@@ -22,7 +22,7 @@ const Financial = () => {
       else
           return numero; 
       }
-      let dataAtual = new Date(); //29/01/2020
+      let dataAtual = new Date(); 
       let dataAtualFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "-" + adicionaZero(dataAtual.getDate().toString()));
 
     const [data, setData] = useState(dataAtualFormatada);

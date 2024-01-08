@@ -157,30 +157,30 @@ const ListBox = ({ box, getBox, setData, data }) => {
                 <Grid container item direction="row" spacing={2}>
                   <Grid item xs={12} sm={8} md={4}>
                     <Div style={{ padding: "10px" }}>
-                      <Typography style={{ color: "#02b3d4" }} variant="h6">
+                      <Typography style={{ color: "#02b3d4" }} >
                         Entradas
                       </Typography>
-                      <Typography style={{ color: "#000" }} variant="h6">
+                      <Typography style={{ color: "#000" }}>
                         R$ {valor}
                       </Typography>
                     </Div>
                   </Grid>
                   <Grid item xs={12} sm={8} md={4}>
                     <Div style={{ padding: "10px" }}>
-                      <Typography style={{ color: "#02b3d4" }} variant="h6">
+                      <Typography style={{ color: "#02b3d4" }} >
                         Saídas
                       </Typography>
-                      <Typography style={{ color: "red" }} variant="h6">
+                      <Typography style={{ color: "red" }} >
                         R$ {valor}
                       </Typography>
                     </Div>
                   </Grid>
                   <Grid item xs={12} sm={8} md={4}>
                     <Div style={{ padding: "10px" }}>
-                      <Typography style={{ color: "#02b3d4" }} variant="h6">
+                      <Typography style={{ color: "#02b3d4" }} >
                         Saldo
                       </Typography>
-                      <Typography style={{ color: "#161b" }} variant="h6">
+                      <Typography style={{ color: "#161b" }}>
                         R$ {valor}
                       </Typography>
                     </Div>

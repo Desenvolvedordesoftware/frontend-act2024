@@ -6,11 +6,11 @@ import { useDrawingArea } from '@mui/x-charts/hooks';
 
 
 const data = [
-  { label: 'Dinheiro', value: 400, color: '#0088FE' },
-  { label: 'Pix', value: 300, color: '#00C49F' },
-  { label: 'C. Credito', value: 300, color: '#FFBB28' },
-  { label: 'C. Debito', value: 200, color: '#FF8042' },
-  { label: 'Aprazo', value: 325, color: 'rgb(207, 205, 205)' },
+  { label: 'Dinheiro', value: 400},
+  { label: 'Pix', value: 499 },
+  { label: 'C. Credito', value: 300 },
+  { label: 'C. Debito', value: 200 },
+  { label: 'Aprazo', value: 325 },
 ];
 
 const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
@@ -60,7 +60,7 @@ export default function ChartSalesDay() {
       height={200}
       {...size}
     >
-      <PieCenterLabel>Hoje</PieCenterLabel>
+      <PieCenterLabel>Janeiro</PieCenterLabel>
     </PieChart>
   );
 }
