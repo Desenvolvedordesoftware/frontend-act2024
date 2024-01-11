@@ -2,14 +2,13 @@ import React,{useEffect} from 'react';
 import './Navbar.style.css';import {
     Typography,
 } from '@mui/material';
-import {codCompany} from "../../function/FunctionR"
 
 const Navbar = ({ tipoMenu, handleMenu }) => {
 
    let company = "";
    let neighborhood = "";
 
-   
+
 
     return (
         <div className="navbar">
