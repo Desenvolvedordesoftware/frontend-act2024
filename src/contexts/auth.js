@@ -10,6 +10,8 @@ var Password = "";
 var Name = "";
 var Tokem = "";
 
+var codCompany = ''; 
+
 
 export const AuthProvider = ({ children }) => {
    const [user, setUser] = useState();
@@ -48,6 +50,7 @@ export const AuthProvider = ({ children }) => {
                   Password = String(dados.senha);
                   Name = dados.nome;
                   Tokem = dados.token;
+                  codCompany = dados.empresa;
 
                })
 
@@ -55,7 +58,6 @@ export const AuthProvider = ({ children }) => {
          } catch (error) {
             toast.error(error);
          }
-
 
          if (password === Password) {
 
