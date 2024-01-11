@@ -5,41 +5,51 @@ import { styled } from '@mui/material/styles';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 
 
-const data = [
-  { label: 'Dinheiro', value: 400},
-  { label: 'Pix', value: 499 },
-  { label: 'C. Credito', value: 300 },
-  { label: 'C. Debito', value: 200 },
-  { label: 'Aprazo', value: 325 },
-];
+export default function ChartSalesDay({ totalDinheiro, totalPix, totalCredito, totalDebito, totalAprazo }) {
 
-const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
+  const data = [
+    { label: 'Dinheiro', value: parseFloat(totalDinheiro) },
+    { label: 'Pix', value: parseFloat(totalPix) },
+    { label: 'C. Credito', value: parseFloat(totalCredito) },
+    { label: 'C. Debito', value: parseFloat(totalDebito) },
+    { label: 'Aprazo', value: parseFloat(totalAprazo) },
+  ];
+  function adicionaZero(numero) {
+    if (numero <= 9)
+      return "0" + numero;
+    else
+      return numero;
+  }
+  let dataAtual = new Date();
+  let dataFormatada = ((adicionaZero(dataAtual.getMonth() + 1).toString()) + "/" + dataAtual.getFullYear());
 
-const getArcLabel = (params: DefaultizedPieValueType) => {
-  const percent = params.value / TOTAL;
-  return `${(percent * 100).toFixed(0)}%`;
-};
+  const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
 
-const StyledText = styled('text')(({ theme }) => ({
-  fill: theme.palette.text.primary,
-  textAnchor: 'middle',
-  dominantBaseline: 'central',
-  fontSize: 20,
-}));
-const size = {
-  width: 350,
-  height: 200,
-};
-function PieCenterLabel({ children }: { children: React.ReactNode }) {
-  const { width, height, left, top } = useDrawingArea();
-  return (
-    <StyledText x={left + width / 2} y={top + height / 2}>
-      {children}
-    </StyledText>
-  );
-}
+  const getArcLabel = (params: DefaultizedPieValueType) => {
+    const percent = params.value / TOTAL;
+    return `${(percent * 100).toFixed(0)}%`;
+  };
 
-export default function ChartSalesDay() {
+  const StyledText = styled('text')(({ theme }) => ({
+    fill: theme.palette.text.primary,
+    textAnchor: 'middle',
+    dominantBaseline: 'central',
+    fontSize: 20,
+    fontFamily: "fantasy"
+  }));
+  const size = {
+    width: 350,
+    height: 200,
+  };
+  function PieCenterLabel({ children }: { children: React.ReactNode }) {
+    const { width, height, left, top } = useDrawingArea();
+    return (
+      <StyledText x={left + width / 2} y={top + height / 2}>
+        {children}
+      </StyledText>
+    );
+  }
+
   return (
     <PieChart
       series={[
@@ -60,7 +70,7 @@ export default function ChartSalesDay() {
       height={200}
       {...size}
     >
-      <PieCenterLabel>Janeiro</PieCenterLabel>
+      <PieCenterLabel>{dataFormatada}</PieCenterLabel>
     </PieChart>
   );
 }
