@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
+import axios from "axios";
+import { url, codCompany } from "../../function/FunctionR";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +16,104 @@ import {
 import { Div } from "../../styles/stylesHome";
 
 const Home = () => {
+    const [totalDinheiro, setTotalDinheiro] = React.useState([]);
+    const [totalPix, setTotalPix] = React.useState([]);
+    const [totalCredito, setTotalCredito] = React.useState([]);
+    const [totalDebito, setTotalDebito] = React.useState([]);
+    const [totalAprazo, setTotalAprazo] = React.useState([]);
+
+    const [totalSaidas, setTotalSaidas] = React.useState([]);
+
+    function adicionaZero(numero) {
+        if (numero <= 9)
+            return "0" + numero;
+        else
+            return numero;
+    }
+    let dataAtual = new Date();
+    let dataIFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-" + "01");
+    let dataFFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-" + "31");
+
+    const dataI = React.useState(dataIFormatada);
+    const dataF = React.useState(dataFFormatada);
+
+    async function getSalesFormDin() {
+        await axios.get(url + "/box/salesformdin/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+
+            response.data.map((dados) => {
+
+                setTotalDinheiro(dados.DINHEIRO === null ? 0 : dados.DINHEIRO);
+            })
+        })
+            .catch(async function (response) {
+                toast.error(response);
+            });
+        await axios.get(url + "/box/salesformpix/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+
+            response.data.map((dados) => {
+
+                setTotalPix(dados.PIX === null ? 0 : dados.PIX);
+            })
+        })
+            .catch(async function (response) {
+                toast.error(response);
+            });
+        await axios.get(url + "/box/salesformccr/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+
+            response.data.map((dados) => {
+
+                setTotalCredito(dados.C_CREDITO === null ? 0 : dados.C_CREDITO);
+            })
+        })
+            .catch(async function (response) {
+                toast.error(response);
+            });
+        await axios.get(url + "/box/salesformcde/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+
+            response.data.map((dados) => {
+
+                setTotalDebito(dados.C_DEBITO === null ? 0 : dados.C_DEBITO);
+            })
+        })
+            .catch(async function (response) {
+                toast.error(response);
+            });
+        await axios.get(url + "/box/salesformapz/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+
+            response.data.map((dados) => {
+
+                setTotalAprazo(dados.APRAZO === null ? 0 : dados.APRAZO);
+            })
+        })
+            .catch(async function (response) {
+                toast.error(response);
+            });
+        await axios.get(url + "/box/salesexits/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+
+            response.data.map((dados) => {
+
+                setTotalSaidas(dados.SAIDAS === null ? 0 : dados.SAIDAS);
+            })
+        })
+            .catch(async function (response) {
+                toast.error(response);
+            });
+    }
+
+    React.useEffect(() => {
+        getSalesFormDin();
+    }, []);
+ 
+   let Entradas = parseFloat(totalDinheiro) +
+   parseFloat(totalPix) +
+   parseFloat(totalCredito) +
+   parseFloat(totalDebito) +
+   parseFloat(totalAprazo);
+
+   let Saidas = parseFloat(totalSaidas);
+
+   let Saldo = Entradas - Saidas;
+
     return (
         <>
             <Menu>
@@ -25,19 +125,43 @@ const Home = () => {
                                 <Grid item xs={12} sm={8} md={4}>
                                     <Div style={{ padding: "10px" }}>
                                         <Typography style={{ color: "#02b3d4" }} >Entradas</Typography>
-                                        <Typography style={{ color: "#000" }} >R$ 4.786.45</Typography>
+                                        <Typography style={{ color: "#000" }} >
+                                            {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                    Entradas
+                                                )}
+                                        </Typography>
                                     </Div>
                                 </Grid>
                                 <Grid item xs={12} sm={8} md={4}>
                                     <Div style={{ padding: "10px" }}>
                                         <Typography style={{ color: "#02b3d4" }} >Saídas</Typography>
-                                        <Typography style={{ color: "red" }} >R$ 2.286.35</Typography>
+                                        <Typography style={{ color: "red" }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                    Saidas
+                                                )}
+                                        </Typography>
                                     </Div>
                                 </Grid>
                                 <Grid item xs={12} sm={8} md={4}>
                                     <Div style={{ padding: "10px" }}>
                                         <Typography style={{ color: "#02b3d4" }} >Saldo</Typography>
-                                        <Typography style={{ color: "#161b" }} >R$ 2.500,10</Typography>
+                                        <Typography style={{ color: "#161b" }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                    Saldo
+                                                )}
+                                        </Typography>
                                     </Div>
                                 </Grid>
                             </Grid>
@@ -47,8 +171,14 @@ const Home = () => {
                     <Div style={{ overflow: "auto", padding: "10px" }}>
                         <Grid container item direction="row" spacing={1} marginLeft={-5}>
                             <Grid item xs={12} sm={6} md={4} >
-                                <h1 style={{ color: "#02b3d4", marginLeft: "35px", fontSize:"16px" }} >Vendas por forma de pagamento</h1>
-                                <ChartSalesDay />
+                                <h1 style={{ color: "#02b3d4", marginLeft: "35px", fontSize: "16px" }} >Vendas por forma de pagamento</h1>
+                                <ChartSalesDay
+                                    totalDinheiro={totalDinheiro}
+                                    totalPix={totalPix}
+                                    totalCredito={totalCredito}
+                                    totalDebito={totalDebito}
+                                    totalAprazo={totalAprazo}
+                                />
                             </Grid>
                         </Grid>
                     </Div>
