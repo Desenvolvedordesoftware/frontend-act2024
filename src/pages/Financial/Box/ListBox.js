@@ -99,12 +99,20 @@ const style = {
   p: 1,
 };
 
-const ListBox = ({ box, getBox, setData, data }) => {
+const ListBox = ({ box, getBox, setData, data,totalDinheiro, totalPix, totalCredito, totalDebito, totalAprazo,totalSaidas  }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  var valor = 0;
+  
+  let Entradas = parseFloat(totalDinheiro) +
+  parseFloat(totalPix) +
+  parseFloat(totalCredito) +
+  parseFloat(totalDebito) +
+  parseFloat(totalAprazo);
 
+  let Saidas = parseFloat(totalSaidas);
+
+  let Saldo = Entradas - Saidas;
   return (
     <div>
       <Button
@@ -158,10 +166,16 @@ const ListBox = ({ box, getBox, setData, data }) => {
                   <Grid item xs={12} sm={8} md={4}>
                     <Div style={{ padding: "10px" }}>
                       <Typography style={{ color: "#02b3d4" }} >
-                        Entradas
+                          Entradas
                       </Typography>
                       <Typography style={{ color: "#000" }}>
-                        R$ {valor}
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                          Entradas
+                      )}
                       </Typography>
                     </Div>
                   </Grid>
@@ -171,7 +185,13 @@ const ListBox = ({ box, getBox, setData, data }) => {
                         Saídas
                       </Typography>
                       <Typography style={{ color: "red" }} >
-                        R$ {valor}
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                          Saidas
+                      )}
                       </Typography>
                     </Div>
                   </Grid>
@@ -181,7 +201,13 @@ const ListBox = ({ box, getBox, setData, data }) => {
                         Saldo
                       </Typography>
                       <Typography style={{ color: "#161b" }}>
-                        R$ {valor}
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                          Saldo
+                      )}
                       </Typography>
                     </Div>
                   </Grid>

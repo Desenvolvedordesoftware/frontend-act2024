@@ -14,7 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const Financial = () => {
-    const [box, setBox] = useState([]);
+    const [box, setBox] = useState([]); 
+    const [totalDinheiro, setTotalDinheiro] = React.useState([]);
+    const [totalPix, setTotalPix] = React.useState([]);
+    const [totalCredito, setTotalCredito] = React.useState([]);
+    const [totalDebito, setTotalDebito] = React.useState([]);
+    const [totalAprazo, setTotalAprazo] = React.useState([]);
+
+    const [totalSaidas, setTotalSaidas] = React.useState([]);
 
     function adicionaZero(numero){
       if (numero <= 9) 
@@ -31,11 +38,75 @@ const Financial = () => {
     const getBox = async () => {
         try {
           const res = await axios.get(url+"/box/"+codCompany+"/"+data);
-        
+        if(res){
           setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
+        }else{
+          setBox([])
+          return toast.warn("Não foi encotrado movimentações!");
+        }
         } catch (error) {
           toast.error(error);
         }
+        await axios.get(url + "/box/salesformdin/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+
+          response.data.map((dados) => {
+
+              setTotalDinheiro(dados.DINHEIRO === null ? 0 : dados.DINHEIRO);
+          })
+      })
+          .catch(async function (response) {
+              toast.error(response);
+          });
+      await axios.get(url + "/box/salesformpix/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+
+          response.data.map((dados) => {
+
+              setTotalPix(dados.PIX === null ? 0 : dados.PIX);
+          })
+      })
+          .catch(async function (response) {
+              toast.error(response);
+          });
+      await axios.get(url + "/box/salesformccr/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+
+          response.data.map((dados) => {
+
+              setTotalCredito(dados.C_CREDITO === null ? 0 : dados.C_CREDITO);
+          })
+      })
+          .catch(async function (response) {
+              toast.error(response);
+          });
+      await axios.get(url + "/box/salesformcde/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+
+          response.data.map((dados) => {
+
+              setTotalDebito(dados.C_DEBITO === null ? 0 : dados.C_DEBITO);
+          })
+      })
+          .catch(async function (response) {
+              toast.error(response);
+          });
+      await axios.get(url + "/box/salesformapz/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+
+          response.data.map((dados) => {
+
+              setTotalAprazo(dados.APRAZO === null ? 0 : dados.APRAZO);
+          })
+      })
+          .catch(async function (response) {
+              toast.error(response);
+          });
+      await axios.get(url + "/box/salesexits/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+
+          response.data.map((dados) => {
+
+              setTotalSaidas(dados.SAIDAS === null ? 0 : dados.SAIDAS);
+          })
+      })
+          .catch(async function (response) {
+              toast.error(response);
+          });
     };
     
       useEffect(() => {
@@ -51,7 +122,14 @@ const Financial = () => {
                         <Grid item xs={8} >
                           <ListBox 
                           box={box} setBox={setBox} getBox={getBox} 
-                          setData={setData} data={data} />
+                          setData={setData} data={data} 
+                          totalDinheiro={totalDinheiro}
+                          totalPix={totalPix}
+                          totalCredito={totalCredito}
+                          totalDebito={totalDebito}
+                          totalAprazo={totalAprazo}
+                          totalSaidas={totalSaidas}
+                          />
                           <ListToPay/>
                           <ListToReceive/>
                         </Grid>
