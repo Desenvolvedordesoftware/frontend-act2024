@@ -5,7 +5,6 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Div = styled.div`
@@ -244,7 +243,6 @@ const ListBox = ({ box, getBox, setData, data,totalDinheiro, totalPix, totalCred
         </Box>
       </Modal>
       
-      <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
     </div>
   );
 };

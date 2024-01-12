@@ -3,8 +3,7 @@ import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
 import axios from "axios";
 import { url } from "../../function/FunctionR";
-import { CodCompany } from '../../contexts/auth';
-
+import { CodCompany } from '../../components/Nabar/Navbar';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,8 +36,9 @@ const Home = () => {
 
     const dataI = React.useState(dataIFormatada);
     const dataF = React.useState(dataFFormatada);
-
+    
     async function getSalesFormDin() {
+
         await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {

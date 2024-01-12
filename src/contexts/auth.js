@@ -28,6 +28,15 @@ export const AuthProvider = ({ children }) => {
       }
    }, []);
 
+   function geraStringAleatoria(tamanho) {
+      var stringAleatoria = '';
+      var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      for (var i = 0; i < tamanho; i++) {
+          stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+      }
+      return stringAleatoria;
+   }
+
    const signin = (email, password) => {
       const handleSubmit = async () => {
 
@@ -58,37 +67,43 @@ export const AuthProvider = ({ children }) => {
             toast.error(error);
          }
 
-         if (password === Password) {
+         const usersStorage = JSON.parse(localStorage.getItem("users_db"));
 
-            let newUser;
+      const hasUser = usersStorage?.filter((user) => user.email === email);
 
-            if (usersStorage) {
-               newUser = [...usersStorage, { email, password }];
-            } else {
-               newUser = [{ email, password }];
+      if (hasUser?.length) {
+         return;
+      }else{
+
+               if (password === Password) {
+
+                  let newUser;
+
+                  if (usersStorage) {
+                     newUser = [...usersStorage, { email, CodCompany }];
+                  } else {
+                     newUser = [{ email, CodCompany }];
+                  }
+
+                  localStorage.setItem("users_db", JSON.stringify(newUser));
+
+                  toast.success("Seja bem vindo" + " " + Name + "!");
+                  return;
+
+               } else {
+                  localStorage.removeItem("user_token");
+                  localStorage.removeItem("users_db");
+                  return toast.warn("Erro de Autenticação!");
+               };
             }
-
-            localStorage.setItem("users_db", JSON.stringify(newUser));
-
-            toast.success("Seja bem vindo" + " " + Name + "!");
-            return;
-
-         } else {
-            localStorage.removeItem("user_token");
-            localStorage.removeItem("users_db");
-            return toast.warn("Erro de Autenticação!");
-         };
-
       };
-
-      const usersStorage = JSON.parse(localStorage.getItem("users_db"));
 
       handleSubmit();
 
 
       if (Email === email && Password === password) {
-         const token = Tokem;
-         localStorage.setItem("user_token", JSON.stringify({ email, token }));
+         const token = geraStringAleatoria(128);
+         localStorage.setItem("user_token", JSON.stringify({ token, email }));
          setUser({ email, password });
          return;
       } else {

@@ -3,9 +3,13 @@ import './Navbar.style.css';import {
     Typography,
 } from '@mui/material';
 
+const usersStorage = JSON.parse(localStorage.getItem("users_db"));
+
+export const CodCompany = usersStorage.map((user) => user.CodCompany);
+
 const Navbar = ({ tipoMenu, handleMenu }) => {
 
-   let company = "";
+   let company = CodCompany;
    let neighborhood = "";
 
 
