@@ -10,8 +10,7 @@ var Password = "";
 var Name = "";
 var Tokem = "";
 
-var codCompany = ''; 
-
+export var CodCompany = "";
 
 export const AuthProvider = ({ children }) => {
    const [user, setUser] = useState();
@@ -50,7 +49,7 @@ export const AuthProvider = ({ children }) => {
                   Password = String(dados.senha);
                   Name = dados.nome;
                   Tokem = dados.token;
-                  codCompany = dados.empresa;
+                  CodCompany = dados.empresa;
 
                })
 

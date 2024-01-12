@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
-import { url, codCompany } from "../../function/FunctionR";
+import { url } from "../../function/FunctionR";
+import { CodCompany } from '../../contexts/auth';
 import {
     Grid,
 } from '@mui/material';
@@ -37,17 +38,18 @@ const Financial = () => {
     
     const getBox = async () => {
         try {
-          const res = await axios.get(url+"/box/"+codCompany+"/"+data);
-        if(res){
-          setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
+          const res = await axios.get(url+"/box/"+CodCompany+"/"+data);
+        if(res.data.length === 0){
+            console.log(box);
+            setBox([])
+            return toast.warn("Não foi encotrado movimentações!");
         }else{
-          setBox([])
-          return toast.warn("Não foi encotrado movimentações!");
+            setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
         }
         } catch (error) {
           toast.error(error);
         }
-        await axios.get(url + "/box/salesformdin/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+        await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
           response.data.map((dados) => {
 
@@ -57,7 +59,7 @@ const Financial = () => {
           .catch(async function (response) {
               toast.error(response);
           });
-      await axios.get(url + "/box/salesformpix/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+      await axios.get(url + "/box/salesformpix/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
           response.data.map((dados) => {
 
@@ -67,7 +69,7 @@ const Financial = () => {
           .catch(async function (response) {
               toast.error(response);
           });
-      await axios.get(url + "/box/salesformccr/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+      await axios.get(url + "/box/salesformccr/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
           response.data.map((dados) => {
 
@@ -77,7 +79,7 @@ const Financial = () => {
           .catch(async function (response) {
               toast.error(response);
           });
-      await axios.get(url + "/box/salesformcde/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+      await axios.get(url + "/box/salesformcde/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
           response.data.map((dados) => {
 
@@ -87,7 +89,7 @@ const Financial = () => {
           .catch(async function (response) {
               toast.error(response);
           });
-      await axios.get(url + "/box/salesformapz/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+      await axios.get(url + "/box/salesformapz/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
           response.data.map((dados) => {
 
@@ -97,7 +99,7 @@ const Financial = () => {
           .catch(async function (response) {
               toast.error(response);
           });
-      await axios.get(url + "/box/salesexits/" + codCompany + "/" + data + "/" + data).then(async function (response) {
+      await axios.get(url + "/box/salesexits/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
           response.data.map((dados) => {
 
@@ -135,7 +137,6 @@ const Financial = () => {
                         </Grid>
                     </Grid>
             </Box>
-             <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </ContentPage>
         </Menu>
         </>

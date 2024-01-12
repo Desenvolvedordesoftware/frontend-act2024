@@ -2,7 +2,8 @@ import * as React from 'react';
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
 import axios from "axios";
-import { url, codCompany } from "../../function/FunctionR";
+import { url } from "../../function/FunctionR";
+import { CodCompany } from '../../contexts/auth';
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,7 +39,7 @@ const Home = () => {
     const dataF = React.useState(dataFFormatada);
 
     async function getSalesFormDin() {
-        await axios.get(url + "/box/salesformdin/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+        await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
 
@@ -48,7 +49,7 @@ const Home = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
-        await axios.get(url + "/box/salesformpix/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+        await axios.get(url + "/box/salesformpix/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
 
@@ -58,7 +59,7 @@ const Home = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
-        await axios.get(url + "/box/salesformccr/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+        await axios.get(url + "/box/salesformccr/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
 
@@ -68,7 +69,7 @@ const Home = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
-        await axios.get(url + "/box/salesformcde/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+        await axios.get(url + "/box/salesformcde/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
 
@@ -78,7 +79,7 @@ const Home = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
-        await axios.get(url + "/box/salesformapz/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+        await axios.get(url + "/box/salesformapz/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
 
@@ -88,7 +89,7 @@ const Home = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
-        await axios.get(url + "/box/salesexits/" + codCompany + "/" + dataI + "/" + dataF).then(async function (response) {
+        await axios.get(url + "/box/salesexits/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
 
