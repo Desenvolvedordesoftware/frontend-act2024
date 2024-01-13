@@ -3,7 +3,6 @@ import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
 import axios from "axios";
 import { url } from "../../function/FunctionR";
-import { CodCompany } from '../../components/Nabar/Navbar';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +15,8 @@ import {
 import { Div } from "../../styles/stylesHome";
 
 const Home = () => {
+    const usersStorage = JSON.parse(localStorage.getItem("users_db"));
+    const CodCompany = usersStorage.map((user) => user.CodCompany);
     const [totalDinheiro, setTotalDinheiro] = React.useState([]);
     const [totalPix, setTotalPix] = React.useState([]);
     const [totalCredito, setTotalCredito] = React.useState([]);
@@ -38,6 +39,13 @@ const Home = () => {
     const dataF = React.useState(dataFFormatada);
     
     async function getSalesFormDin() {
+        setTotalDinheiro([0]);
+        setTotalPix([0]);
+        setTotalCredito([0]);
+        setTotalDebito([0]);
+        setTotalAprazo([0]);
+    
+        setTotalSaidas([0]);
 
         await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 

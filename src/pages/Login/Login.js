@@ -53,17 +53,18 @@ const Login = () => {
                 />
                 <Button Text="Entrar" onClick={handleLogin}/>
                 <div>
-                    <p>Não possui conta? <Link style={{color:"#02b3d4"}} to="https://w.app/hHT9Ee">&nbsp;WhatSapp</Link></p>
+                    <p>Não possui conta? <Link style={{color:"#02b3d4"}} >WhatSapp</Link></p>
                     <FloatingWhatsApp 
-                      phoneNumber="94992565280"
-                      avatar="./images/LogoEmpresa.png"
-                      accountName="ACThauros"
-                      statusMessage="Sistemas de Gestão Comercial"
-                      chatMessage="Agradece seu contato. Como podemos ajudar?"
-                      placeholder="Digite uma mensagem"
+                      phoneNumber='94992565280'
+                      avatar='./images/LogoEmpresa.png'
+                      accountName='ACThauros'
+                      statusMessage='Sistemas de Gestão Comercial'
+                      chatMessage='Agradece seu contato. Como podemos ajudar?'
+                      placeholder='Digite uma mensagem'
+                      
                     />
                 </div>
-                 <h6>Versão: 0.1.51</h6>
+                 <h6>Versão: 0.1.98</h6>
             </From>
            <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </Container>

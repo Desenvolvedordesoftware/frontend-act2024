@@ -1,23 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import {url} from "../../function/FunctionR";
 import Navbar from "../Nabar/Navbar";
 import "./Menu.style.css";
 import { Page } from "../../styles/stylesHome";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";import {
+    Typography,
+} from '@mui/material';
 
 const Menu = ({ children }) => {
     const { signout } = useAuth();
     const [open, setOpen] = useState('fechado');
+    const [company, setCompany] = useState();
+    const [cnpj, setCnpj] = useState();
 
     const handleMenu = () => {
         (open === 'aberto') ? setOpen('fechado') : setOpen('aberto');
     };
 
+    const dadosCompany = async () => {
+        const usersStorage = JSON.parse(localStorage.getItem("users_db"));
+        const CodCompany = usersStorage.map((user) => user.CodCompany);
+       
+            try {
+               const res = await axios.get(url+"/settings/company/"+CodCompany);
+   
+               if (res.data.length === 0) {
+                  return toast.warn("Falha!");
+               } else {
+                  var lista = [];
+   
+                  res.data.map((dados) => {
+                     lista.push(
+                        [(dados.id),
+   
+                        ]
+                     )
+                     setCnpj(dados.CNPJ);
+                     setCompany( dados.NOME);
+                  })
+   
+               }
+            } catch (error) {
+               toast.error(error);
+            }
+    }
+
+    useEffect(() => {
+     dadosCompany();
+     return;
+    },[]);
+
     return (
         <>
             <div className={`menu ${open}`} >
-                <h1 className="logo">ACThauros</h1>
-                <h1 className="logo">Sistemas de Gestão Comercial</h1>
+            <Typography className="logo" style={{ color: "#02b3d4", fontSize:"12px" }} ><i class="fa-solid fa-globe"></i> {company} </Typography>
+            <Typography className="logo" style={{ color: "#02b3d4", fontSize:"10px" }} >CNPJ: {cnpj} </Typography>
                 <Page >
                 <ul className="conteudo-menu">
                     {/* Menu sem Dropdow */}
@@ -81,6 +121,14 @@ const Menu = ({ children }) => {
                     </li>
                 </ul>
                 </Page>
+             <div style={{ 
+                marginLeft:"10px", 
+                marginTop:"100%"}}>
+                <Typography style={{ color: "#02b3d4", fontSize:"12px" }} ><i class="fa-solid fa-globe"></i>ACThauros</Typography>
+                <Typography style={{ color: "#02b3d4", fontSize:"12px" }} >Sistemas de Gestão Comercial</Typography>
+                <Typography style={{ color: "#02b3d4", fontSize:"12px" }} >Versão: 0.1.98</Typography>
+                
+             </div>
             </div>
 
             <div className={`site ${open}`}>

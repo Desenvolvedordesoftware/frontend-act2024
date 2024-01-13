@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {url} from "../function/FunctionR"
+import {url} from "../function/FunctionR";
 
 export const AuthContext = createContext({});
 
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       const handleSubmit = async () => {
 
          try {
-            const res = await axios.get(url+"/users/"+email);
+            const res = await axios.get(url+"/users/"+email+"/"+password);
 
             if (res.data.length === 0) {
                return toast.warn("Falha de Autenticação!");

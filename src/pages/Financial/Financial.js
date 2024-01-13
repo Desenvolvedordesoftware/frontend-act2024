@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
 import { url } from "../../function/FunctionR";
-import { CodCompany } from '../../components/Nabar/Navbar';
 import {
     Grid,
 } from '@mui/material';
@@ -15,6 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const Financial = () => {
+    const usersStorage = JSON.parse(localStorage.getItem("users_db"));
+    const CodCompany = usersStorage.map((user) => user.CodCompany);
     const [box, setBox] = useState([]);
     const [totalDinheiro, setTotalDinheiro] = React.useState([]);
     const [totalPix, setTotalPix] = React.useState([]);
@@ -37,10 +38,19 @@ const Financial = () => {
 
 
     const getBox = async () => {
+        setBox([0]);
+        setTotalDinheiro([0]);
+        setTotalPix([0]);
+        setTotalCredito([0]);
+        setTotalDebito([0]);
+        setTotalAprazo([0]);
+    
+        setTotalSaidas([0]);
+        
+
         try {
             const res = await axios.get(url + "/box/" + CodCompany + "/" + data);
             if (res.data.length === 0) {
-                console.log(box);
                 setBox([])
                 return toast.warn("Não foi encotrado movimentações!");
             } else {
@@ -50,14 +60,12 @@ const Financial = () => {
             toast.error(error);
         }
         await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-           if(response){
+      
             response.data.map((dados) => {
 
                 setTotalDinheiro(dados.DINHEIRO === null ? 0 : dados.DINHEIRO);
             })
-            }else{
-                setTotalDinheiro([]);  
-            }
+            
         })
             .catch(async function (response) {
                 toast.error(response);
