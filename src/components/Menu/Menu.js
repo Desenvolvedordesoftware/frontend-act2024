@@ -115,7 +115,7 @@ const Menu = ({ children }) => {
 
  */}                   <li className="item-menu">
                         <NavLink className="link-menu" to="/" onClick={() => [signout(), handleMenu]}>
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Sair</span>
                         </NavLink>
                     </li>
@@ -123,7 +123,7 @@ const Menu = ({ children }) => {
                 </Page>
              <div style={{ 
                 marginLeft:"10px", 
-                marginTop:"100%"}}>
+                marginTop:"70%"}}>
                 <Typography style={{ color: "#02b3d4", fontSize:"12px" }} ><i class="fa-solid fa-globe"></i>ACThauros</Typography>
                 <Typography style={{ color: "#02b3d4", fontSize:"12px" }} >Sistemas de Gestão Comercial</Typography>
                 <Typography style={{ color: "#02b3d4", fontSize:"12px" }} >Versão: 0.1.98</Typography>

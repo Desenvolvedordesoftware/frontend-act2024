@@ -5,14 +5,25 @@ import axios from "axios";
 import { url } from "../../function/FunctionR";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import styled from "styled-components";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import ChartSalesDay from './ChartSalesDay';
+import ChartSalesMonthColun from './ChartSalesMonthColun';
 
 import {
     Typography,
     Grid,
 } from '@mui/material';
 import { Div } from "../../styles/stylesHome";
+
+export const Th = styled.div`
+
+  @media (max-width: 700px) {
+    ${(props) => props.onlyWeb && "display: none"}  
+  }
+`;
 
 const Home = () => {
     const usersStorage = JSON.parse(localStorage.getItem("users_db"));
@@ -24,6 +35,14 @@ const Home = () => {
     const [totalAprazo, setTotalAprazo] = React.useState([]);
 
     const [totalSaidas, setTotalSaidas] = React.useState([]);
+
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+    setOpen(false);
+    };
+    const handleOpen = () => {
+    setOpen(true);
+    };
 
     function adicionaZero(numero) {
         if (numero <= 9)
@@ -107,10 +126,12 @@ const Home = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
+            handleClose();
     }
 
     React.useEffect(() => {
         getSalesFormDin();
+        handleOpen();
     }, []);
  
    let Entradas = parseFloat(totalDinheiro) +
@@ -123,10 +144,11 @@ const Home = () => {
 
    let Saldo = Entradas - Saidas;
 
+
     return (
         <>
             <Menu>
-                <ContentPage titulo="Dashboard" caminho={[{ nome: "Dashboard", link: "/" }]}>
+                <ContentPage caminho={[{ nome: "Dashboard", link: "/" }]}>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Grid container direction="column" padding={1} spacing={2}>
 
@@ -176,10 +198,11 @@ const Home = () => {
                             </Grid>
                         </Grid>
                     </div>
-
+                    <div>
+                    </div>
                     <Div style={{ overflow: "auto", padding: "10px" }}>
-                        <Grid container item direction="row" spacing={1} marginLeft={-5}>
-                            <Grid item xs={12} sm={6} md={4} >
+                        <Grid container item direction="row" spacing={1} marginRight={-5}>
+                            <Grid item xs={12} sm={12} md={4} >
                                 <h1 style={{ color: "#02b3d4", marginLeft: "35px", fontSize: "16px" }} >Vendas por forma de pagamento</h1>
                                 <ChartSalesDay
                                     totalDinheiro={totalDinheiro}
@@ -189,11 +212,26 @@ const Home = () => {
                                     totalAprazo={totalAprazo}
                                 />
                             </Grid>
+                            <Grid item xs={12} sm={12} md={8} >
+                                <Th onlyWeb>
+                                <ChartSalesMonthColun 
+                                    totalDinheiro={totalDinheiro}
+                                    totalPix={totalPix}
+                                    totalCredito={totalCredito}
+                                    totalDebito={totalDebito}
+                                    totalAprazo={totalAprazo} />
+                                </Th>
+                            </Grid>
                         </Grid>
                     </Div>
                 </ContentPage>
             </Menu>
-
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 5}}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </>
     );

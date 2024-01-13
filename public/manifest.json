@@ -18,8 +18,8 @@
       "sizes": "358x164"
     }
   ],
-  "start_url": "./",
+  "start_url": "https://acthauros.com.br/",
   "display": "standalone",
-  "theme_color": "#f0f2f5",
-  "background_color": "#ffffff"
+  "theme_color": "#343f46",
+  "background_color": "#343f46"
 }

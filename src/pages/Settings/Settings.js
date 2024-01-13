@@ -10,7 +10,7 @@ import Menu from "../../components/Menu/Menu";
 const Settings = () => {
     return (
         <> <Menu>
-        <ContentPage titulo="Configurações" caminho={[{nome: "Configurações", link: "/settings"}]}>
+        <ContentPage caminho={[{nome: "Configurações", link: "/settings"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={8} >

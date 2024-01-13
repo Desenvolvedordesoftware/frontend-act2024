@@ -60,12 +60,12 @@ const Financial = () => {
             toast.error(error);
         }
         await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-      
+   
             response.data.map((dados) => {
 
                 setTotalDinheiro(dados.DINHEIRO === null ? 0 : dados.DINHEIRO);
             })
-            
+           
         })
             .catch(async function (response) {
                 toast.error(response);
@@ -120,17 +120,13 @@ const Financial = () => {
             .catch(async function (response) {
                 toast.error(response);
             });
+             
     };
-
-    useEffect(() => {
-        getBox();
-        return;
-    }, []);
 
     return (
         <>
             <Menu>
-                <ContentPage titulo="Financeiro" caminho={[{ nome: "Financeiro", link: "/financial" }]}>
+                <ContentPage caminho={[{ nome: "Financeiro", link: "/financial" }]}>
                     <Box >
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                             <Grid item xs={8} >
@@ -150,7 +146,8 @@ const Financial = () => {
                         </Grid>
                     </Box>
                 </ContentPage>
-            </Menu>
+            </Menu> 
+            
           <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </>
     );

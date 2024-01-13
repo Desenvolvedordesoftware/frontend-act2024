@@ -75,6 +75,8 @@
 .menu .conteudo-menu .item-menu .link-menu.active{
     color: #12b981;
     background-color: #242a38;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 .menu .conteudo-menu .item-menu .link-menu span {
@@ -82,7 +84,9 @@
 }
 
 .menu .conteudo-menu .item-menu .link-menu:hover {
-    background-color: #242a38;
+    background-color: #343f46;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 .menu .conteudo-menu .item-menu.subitem h3.link-menu::after {
@@ -123,7 +127,7 @@
 }
 
 .navbar .btn-menu{
-    transition: all 0.5s;
+    transition: all 0.10s;
 }
 
 @media (max-width: 1060px) {
