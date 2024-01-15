@@ -5,6 +5,7 @@ import {
 import Box from '@mui/material/Box';
 import Menu from "../../components/Menu/Menu";
 import PageUnderConstruction from "../../components/PageCont/PageUnderConstruction";
+import ListProducts from "./Products/ListProducts";
 
 const Stock = () => {
     return (
@@ -13,9 +14,7 @@ const Stock = () => {
                 <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={6} >
-                            <PageUnderConstruction
-                            Text={"Produtos"}
-                            />
+                            <ListProducts/>
                             <PageUnderConstruction
                             Text={"Nota Fiscal de Entrada"}
                             />

@@ -35,8 +35,9 @@ export const Thead = styled.thead``;
 export const Tbody = styled.tbody`
   position: fixed;
   margin-top: 10px;
-  width: 100%;
-  height: 250px;
+  width: 98%;
+  min-height: 250px;
+  max-height: 350px;
   outline: auto;
   overflow-y: scroll;
   z-index: 5;
@@ -85,19 +86,16 @@ const InputArea = styled.div`
 `;
 
 const style = {
-  marginLeft: .20,
-  boxSizing: "border-box",
-  position: "absolute",
-  overflowWrap: "break-word",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "100%",
-  height: "90%",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  position: 'absolute',
+  margin: 0,
+  padding: 0,
+  boxSizing: 'border-box',
+  width: '100%',
+  height: '100%',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   p: 1,
+  overflow: 'hidden'
 };
 
 const ListBox = ({ box, getBox, setData, data,totalDinheiro, totalPix, totalCredito, totalDebito, totalAprazo,totalSaidas  }) => {
