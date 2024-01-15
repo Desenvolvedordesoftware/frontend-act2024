@@ -23,6 +23,7 @@
     "axios": "^1.6.3",
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
+    "react-data-table-component": "^7.6.2",
     "react-dom": "^18.2.0",
     "react-floating-whatsapp": "^5.0.8",
     "react-icons": "^4.12.0",
