@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Fragment } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home/Home";
 import Financial from "./pages/Financial/Financial";
 import Login from "./pages/Login/Login";
@@ -17,20 +18,23 @@ const Private = ({ Item }) => {
 
 function App() {
   return (
-      <BrowserRouter>
+    <Router>
+      <Fragment>
           <Routes>
             <Route exact path="/" element={<Private Item={<Home/>}/>} />
+            <Route exact path="400" element={<Private Item={<Home/>}/>} />
             <Route exact path="*" element={<Private Item={<Home/>}/>} />
             <Route exact path="%" element={<Private Item={<Home/>}/>} />
             <Route exact path="/financial" element={<Private Item={<Financial/>}/>} />
-            <Route exact  path="/movements" element={<Private Item={<Movements/>}/>} />
-            <Route exact  path="/register" element={<Private Item={<Register/>}/>} />
-            <Route exact  path="/reports" element={<Private Item={<Reports/>}/>} />
-            <Route exact  path="/settings" element={<Private Item={<Settings/>}/>} />
-            <Route exact  path="/stock" element={<Private Item={<Stock/>}/>} />
-            <Route exact  path="/login" element={<Login />} />
+            <Route exact path="/movements" element={<Private Item={<Movements/>}/>} />
+            <Route exact path="/register" element={<Private Item={<Register/>}/>} />
+            <Route exact path="/reports" element={<Private Item={<Reports/>}/>} />
+            <Route exact path="/settings" element={<Private Item={<Settings/>}/>} />
+            <Route exact path="/stock" element={<Private Item={<Stock/>}/>} />
+            <Route exact path="/login" element={<Login />} />
           </Routes>
-      </BrowserRouter>
+      </Fragment>
+      </Router>
   );
 }
 

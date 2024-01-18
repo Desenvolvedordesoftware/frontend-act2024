@@ -1,6 +1,10 @@
 {
   "short_name": "ACThauros",
   "name": "Sistemas de Gestão Comercal",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#343f46",
+  "background_color": "#343f46",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +21,6 @@
       "type": "image/png",
       "sizes": "358x164"
     }
-  ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#343f46",
-  "background_color": "#343f46"
+  ]
+  
 }

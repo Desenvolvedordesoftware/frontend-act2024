@@ -62,7 +62,7 @@ const Menu = ({ children }) => {
                 <ul className="conteudo-menu">
                     {/* Menu sem Dropdow */}
                     <li className="item-menu">
-                        <NavLink className="link-menu" to="/home" onClick={handleMenu} >
+                        <NavLink className="link-menu" to="/" onClick={handleMenu} >
                             <i class="fa-solid fa-chart-simple"></i>
                             <span>Dashboard</span>
                         </NavLink>
