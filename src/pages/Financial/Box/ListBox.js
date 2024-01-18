@@ -30,13 +30,15 @@ const Table = styled.table`
   backdrop-filter: blur(5.5px);
 `;
 
-export const Thead = styled.thead``;
+export const Thead = styled.thead`
+`;
 
 export const Tbody = styled.tbody`
   position: fixed;
   margin-top: 10px;
-  width: 98%;
-  min-height: 250px;
+  width: 100%;
+  background-color: #fff;
+  min-height: 350px;
   max-height: 350px;
   outline: auto;
   overflow-y: scroll;
@@ -92,26 +94,35 @@ const style = {
   boxSizing: 'border-box',
   width: '100%',
   height: '100%',
-  bgcolor: 'background.paper',
+  bgcolor: '#343f46',
   border: '2px solid #000',
   p: 1,
   overflow: 'hidden'
 };
 
-const ListBox = ({ box, getBox, setData, data,totalDinheiro, totalPix, totalCredito, totalDebito, totalAprazo,totalSaidas  }) => {
+const ListBox = ({ box, getBox, setData, data,
+  totalDinheiro,
+  totalPix,
+  totalCredito,
+  totalDebito,
+  totalAprazo,
+  totalChAp,
+  totalEntradas,
+  totalSaidas, }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   
-  let Entradas = parseFloat(totalDinheiro) +
+  let TotalVendas = parseFloat(totalDinheiro) +
   parseFloat(totalPix) +
   parseFloat(totalCredito) +
   parseFloat(totalDebito) +
-  parseFloat(totalAprazo);
+  parseFloat(totalAprazo) +
+  parseFloat(totalChAp);
 
   let Saidas = parseFloat(totalSaidas);
 
-  let Saldo = Entradas - Saidas;
+  let Saldo = totalEntradas - Saidas;
   return (
     <div>
       <Button
@@ -133,11 +144,11 @@ const ListBox = ({ box, getBox, setData, data,totalDinheiro, totalPix, totalCred
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <div>
               <InputArea>
-                <Typography style={{ color: "#000" }}>
+                <Typography style={{ color: "#fff" }}>
                   Selecionar uma data
                 </Typography>
                 <Button
-                  style={{ margin: "5px", width: "100px" }}
+                  style={{ margin: "5px", width: "100px", fontSize:"12px" }}
                   component="label"
                   variant="contained"
                   onClick={handleClose}
@@ -145,67 +156,155 @@ const ListBox = ({ box, getBox, setData, data,totalDinheiro, totalPix, totalCred
                   Fechar
                 </Button>
               </InputArea>
-              <div>
+              <Div style={{backgroundColor:"transparent", padding:"4px"}} >
                 <DataFilter
                   type="date"
                   value={data}
                   onChange={(e) => [setData(e.target.value)]}
                 />
                 <Button
-                  style={{ margin: "5px", width: "100px" }}
+                  style={{ margin: "5px", width: "100px", fontSize:"12px" }}
                   component="label"
                   variant="contained"
                   onClick={getBox}
                 >
                   Filtrar
                 </Button>
-              </div>
+              </Div>
               <div>
-                <Grid container item direction="row" spacing={2}>
+                <Grid container item direction="row" spacing={1}>
                   <Grid item xs={12} sm={8} md={4}>
-                    <Div style={{ padding: "10px" }}>
-                      <Typography style={{ color: "#02b3d4" }} >
-                          Entradas
+                    <Div style={{ padding: "8px",backgroundColor: "#fff" }}>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          Dinheiro
                       </Typography>
-                      <Typography style={{ color: "#000" }}>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
                       {Intl.NumberFormat('pt-br',
                       {
                           style: 'currency',
                           currency: 'BRL'
                       }).format(
-                          Entradas
+                        totalDinheiro
+                      )}
+                      </Typography>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          Pix
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        totalPix
+                      )}
+                      </Typography>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          Aprazo
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        totalAprazo
                       )}
                       </Typography>
                     </Div>
                   </Grid>
                   <Grid item xs={12} sm={8} md={4}>
-                    <Div style={{ padding: "10px" }}>
-                      <Typography style={{ color: "#02b3d4" }} >
-                        Saídas
+                    <Div style={{ padding: "8px" ,backgroundColor: "#fff" }}>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          C.Debito
                       </Typography>
-                      <Typography style={{ color: "red" }} >
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
                       {Intl.NumberFormat('pt-br',
                       {
                           style: 'currency',
                           currency: 'BRL'
                       }).format(
+                        totalDebito
+                      )}
+                      </Typography>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          C.Credito
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        totalCredito
+                      )}
+                      </Typography>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          Ch.Ap
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        totalChAp
+                      )}
+                      </Typography>
+                    </Div>
+                  </Grid>
+                  <Grid item xs={12} sm={8} md={4}>
+                    <Div style={{ padding: "8px" ,backgroundColor: "#fff" }}>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          Total vendas
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        TotalVendas
+                      )}
+                      </Typography>
+                    </Div>
+                  </Grid>
+                  <Grid item xs={12} sm={8} md={4}>
+                    <Div style={{ padding: "8px" ,backgroundColor: "#fff" }}>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
+                          Entradas
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        totalEntradas
+                      )}
+                      </Typography>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
                           Saidas
-                      )}
                       </Typography>
-                    </Div>
-                  </Grid>
-                  <Grid item xs={12} sm={8} md={4}>
-                    <Div style={{ padding: "10px" }}>
-                      <Typography style={{ color: "#02b3d4" }} >
-                        Saldo
-                      </Typography>
-                      <Typography style={{ color: "#161b" }}>
+                      <Typography style={{ color: "red", fontSize:"12px"  }}>
                       {Intl.NumberFormat('pt-br',
                       {
                           style: 'currency',
                           currency: 'BRL'
                       }).format(
+                        totalSaidas
+                      )}
+                      </Typography>
+                      <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >
                           Saldo
+                      </Typography>
+                      <Typography style={{ color: "#000", fontSize:"12px"  }}>
+                      {Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        Saldo
                       )}
                       </Typography>
                     </Div>

@@ -12,18 +12,22 @@ import ListToReceive from "./BillsToReceive/ListToReceive";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Financial = () => {
     const usersStorage = JSON.parse(localStorage.getItem("users_db"));
     const CodCompany = usersStorage.map((user) => user.CodCompany);
     const [box, setBox] = useState([]);
-    const [totalDinheiro, setTotalDinheiro] = React.useState([]);
-    const [totalPix, setTotalPix] = React.useState([]);
-    const [totalCredito, setTotalCredito] = React.useState([]);
-    const [totalDebito, setTotalDebito] = React.useState([]);
-    const [totalAprazo, setTotalAprazo] = React.useState([]);
+    const [totalDinheiro, setTotalDinheiro] = React.useState([0]);
+    const [totalPix, setTotalPix] = React.useState([0]);
+    const [totalCredito, setTotalCredito] = React.useState([0]);
+    const [totalDebito, setTotalDebito] = React.useState([0]);
+    const [totalAprazo, setTotalAprazo] = React.useState([0]);
+    const [totalChAp, setTotalChAp] = React.useState([0]);
 
-    const [totalSaidas, setTotalSaidas] = React.useState([]);
+    const [totalSaidas, setTotalSaidas] = React.useState([0]);
+    const [totalEntradas, setTotalEntradas] = React.useState([0]);
 
     function adicionaZero(numero) {
         if (numero <= 9)
@@ -35,18 +39,15 @@ const Financial = () => {
     let dataAtualFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-" + adicionaZero(dataAtual.getDate().toString()));
 
     const [data, setData] = useState(dataAtualFormatada);
-
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+    setOpen(false);
+    };
+    const handleOpen = () => {
+    setOpen(true);
+    };
 
     const getBox = async () => {
-        setBox([0]);
-        setTotalDinheiro([0]);
-        setTotalPix([0]);
-        setTotalCredito([0]);
-        setTotalDebito([0]);
-        setTotalAprazo([0]);
-    
-        setTotalSaidas([0]);
-        
 
         try {
             const res = await axios.get(url + "/box/" + CodCompany + "/" + data);
@@ -58,69 +59,27 @@ const Financial = () => {
             }
         } catch (error) {
             toast.error(error);
-        }
-        await axios.get(url + "/box/salesformdin/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-   
-            response.data.map((dados) => {
-
-                setTotalDinheiro(dados.DINHEIRO === null ? 0 : dados.DINHEIRO);
-            })
-           
-        })
-            .catch(async function (response) {
-                toast.error(response);
-            });
-        await axios.get(url + "/box/salesformpix/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
+        };
+        
+        handleOpen();
+        await axios.get(url + "/box/sumbox/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
             response.data.map((dados) => {
+                setTotalDinheiro(dados.venda_dinheiro === null ? 0 : dados.venda_dinheiro);
+                setTotalPix(dados.venda_pix === null ? 0 : dados.venda_pix);
+                setTotalCredito(dados.venda_cartaocred === null ? 0 : dados.venda_cartaocred);
+                setTotalDebito(dados.venda_cartaodeb === null ? 0 : dados.venda_cartaodeb);
+                setTotalAprazo(dados.venda_crediario === null ? 0 : dados.venda_crediario);
+                setTotalChAp(dados.venda_chequeap === null ? 0 : dados.venda_chequeap);
 
-                setTotalPix(dados.PIX === null ? 0 : dados.PIX);
+                setTotalEntradas(dados.total_entrada === null ? 0 : dados.total_entrada);
+                setTotalSaidas(dados.total_saida === null ? 0 : dados.total_saida);
             })
         })
             .catch(async function (response) {
                 toast.error(response);
             });
-        await axios.get(url + "/box/salesformccr/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-
-            response.data.map((dados) => {
-
-                setTotalCredito(dados.C_CREDITO === null ? 0 : dados.C_CREDITO);
-            })
-        })
-            .catch(async function (response) {
-                toast.error(response);
-            });
-        await axios.get(url + "/box/salesformcde/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-
-            response.data.map((dados) => {
-
-                setTotalDebito(dados.C_DEBITO === null ? 0 : dados.C_DEBITO);
-            })
-        })
-            .catch(async function (response) {
-                toast.error(response);
-            });
-        await axios.get(url + "/box/salesformapz/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-
-            response.data.map((dados) => {
-
-                setTotalAprazo(dados.APRAZO === null ? 0 : dados.APRAZO);
-            })
-        })
-            .catch(async function (response) {
-                toast.error(response);
-            });
-        await axios.get(url + "/box/salesexits/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
-
-            response.data.map((dados) => {
-
-                setTotalSaidas(dados.SAIDAS === null ? 0 : dados.SAIDAS);
-            })
-        })
-            .catch(async function (response) {
-                toast.error(response);
-            });
-             
+     handleClose();
     };
 
     return (
@@ -138,6 +97,8 @@ const Financial = () => {
                                     totalCredito={totalCredito}
                                     totalDebito={totalDebito}
                                     totalAprazo={totalAprazo}
+                                    totalChAp={totalChAp}
+                                    totalEntradas={totalEntradas}
                                     totalSaidas={totalSaidas}
                                 />
                                 <ListToPay />
@@ -147,7 +108,12 @@ const Financial = () => {
                     </Box>
                 </ContentPage>
             </Menu> 
-            
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 5}}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
           <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </>
     );

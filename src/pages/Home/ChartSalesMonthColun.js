@@ -1,55 +1,130 @@
 import * as React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { axisClasses } from '@mui/x-charts';
+import { Div } from "../../styles/stylesHome";
+import {
+  Typography,
+  Grid,
+} from '@mui/material';
+
+export default function ChartSalesMonthColun({ totalDinheiro, totalPix, totalCredito, totalDebito, totalAprazo, totalChAp }) {
+
+  let Dinheiro = parseFloat(totalDinheiro) ; 
+  let Pix = parseFloat(totalPix);
+  let Credito = parseFloat(totalCredito);
+  let Debito = parseFloat(totalDebito);
+  let Aprazo = parseFloat(totalAprazo);
+  let ChAp = parseFloat(totalChAp);
+  let TotalG = Dinheiro+ Pix+ Credito+ Debito+ Aprazo+ ChAp;
 
 
-
-export default function ChartSalesMonthColun({ totalDinheiro, totalPix, totalCredito, totalDebito, totalAprazo }) {
-    const chartSetting = {
-        yAxis: [
-          {
-            label: 'rainfall (R$)',
-          },
-        ],
-        width: 800,
-        height: 250,
-        sx: {
-          [`.${axisClasses.left} .${axisClasses.label}`]: {
-            transform: 'translate(-30px, 0)',
-          },
-        },
-      };
-      const dataset = [
-          {
-          dinheiro: parseFloat(totalDinheiro),
-          pix: parseFloat(totalPix),
-          credito: parseFloat(totalCredito),
-          debito: parseFloat(totalDebito),
-          aprazo: parseFloat(totalAprazo),
-          month: 'Janeiro',
-          },
-      ];
-      
-      const valueFormatter = (value: number) => `${Intl.NumberFormat('pt-br',
-      {
-          style: 'currency',
-          currency: 'BRL'
-      }).format(
-          value
-      )}`;
-      
   return (
-    <BarChart
-      dataset={dataset}
-      xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
-      series={[
-        { dataKey: 'dinheiro', label: 'Dinheiro', valueFormatter },
-        { dataKey: 'pix', label: 'Pix', valueFormatter },
-        { dataKey: 'credito', label: 'C.Credito', valueFormatter },
-        { dataKey: 'debito', label: 'C.Debito', valueFormatter },
-        { dataKey: 'aprazo', label: 'Aprazo', valueFormatter },
-      ]}
-      {...chartSetting}
-    />
+    <div style={{ gap: "5px" }} > 
+      <Typography style={{ color: "#02b3d4" }} >Resumo do caixa</Typography>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                        <Grid container direction="column" padding={1} spacing={2}>
+
+                            <Grid container item direction="row" spacing={1}>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px" }} >Vendas Dinheiro</Typography>
+                                        <Typography style={{ color: "#000", fontSize:"12px" }} >
+                                            {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  Dinheiro
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Vendas Pix</Typography>
+                                        <Typography style={{ color: "000", fontSize:"12px"  }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  Pix
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4" , fontSize:"12px" }} >Vendas C. Credito</Typography>
+                                        <Typography style={{ color: "#000", fontSize:"12px"  }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  Credito
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Vendas C. Debito</Typography>
+                                        <Typography style={{ color: "#000", fontSize:"12px"  }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  Debito
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Vendas Aprazo</Typography>
+                                        <Typography style={{ color: "#000", fontSize:"12px"  }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  Aprazo
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Vendas Cheque Ap</Typography>
+                                        <Typography style={{ color: "#000", fontSize:"12px"  }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  ChAp
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={4}>
+                                    <Div style={{ padding: "8px" }}>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Total Vendas</Typography>
+                                        <Typography style={{ color: "#000", fontSize:"16px"  }} >
+                                        {Intl.NumberFormat('pt-br',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                }).format(
+                                                  TotalG
+                                                )}
+                                        </Typography>
+                                    </Div>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </div>
+                    
+                    </div>
   );
 }
