@@ -9,11 +9,12 @@ import ListProducts from "./Products/ListProducts";
 
 const Stock = () => {
     return (
-        <> <Menu>
+        <div style={{overflow:"auto"}}> 
+        <Menu>
         <ContentPage caminho={[{nome: "Estoque", link: "/stock"}]}>
                 <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={6} >
+                        <Grid item xs={12} sm={6} md={4} >
                             <ListProducts/>
                             <PageUnderConstruction
                             Text={"Nota Fiscal de Entrada"}
@@ -28,7 +29,8 @@ const Stock = () => {
                     </Grid>
                 </Box>
         </ContentPage>
-        </Menu> </>
+        </Menu> 
+        </div>
     );
 };
 

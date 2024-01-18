@@ -71,7 +71,7 @@ const Home = () => {
     }, []);
 
     return (
-        <>
+        <div style={{overflow:"auto"}}>
             <Menu>
                 <ContentPage caminho={[{ nome: "Dashboard", link: "/" }]}>
                 <Div style={{ overflow: "auto", padding: "10px" }}>
@@ -110,7 +110,7 @@ const Home = () => {
                 <CircularProgress color="inherit" />
             </Backdrop>
             <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
-        </>
+        </div>
     );
 };
 

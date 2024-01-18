@@ -11,6 +11,7 @@ const Navbar = ({tipoMenu, handleMenu }) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_db"));
     const CodCompany = usersStorage.map((user) => user.CodCompany);
     const [companyF, setCompanyF] = useState();
+    const [companyB, setCompanyB] = useState();
 
     const dadosCompany = async () => {
         const usersStorage = JSON.parse(localStorage.getItem("users_db"));
@@ -30,7 +31,8 @@ const Navbar = ({tipoMenu, handleMenu }) => {
 
                         ]
                     )
-                    setCompanyF( dados.FANTASIA);
+                    setCompanyF(dados.FANTASIA);
+                    setCompanyB(dados.BAIRRO)
                 })
 
             }
@@ -50,8 +52,9 @@ const Navbar = ({tipoMenu, handleMenu }) => {
             <button className="btn-menu" onClick={() => handleMenu()}>   
              {tipoMenu === 'aberto' ? <i class="fa-regular fa-circle-xmark"></i> :  <i class="fa-solid fa-list"></i>}
             </button>
-            <div style={{display:"flex", alignContent:"center", alignItems:"center", gap:"4px" }} >
-            <Typography style={{ color: "#02b3d4", fontSize:"12px" }} ><i class="fa-solid fa-globe"></i> {companyF} </Typography>
+            <div style={{ justifyContent:"center", alignItems:"center", gap:"4px" }} >
+            <Typography style={{ color: "#02b3d4", fontSize:"12px" }} ><i class="fa-solid fa-globe"></i> {companyF}</Typography>
+            <Typography style={{ color: "#02b3d4", fontSize:"12px" }} ><i class="fa-solid fa-home"></i> {companyB}</Typography>
             </div>
             <img src="/images/logoACT.png" className="user-ciclo" alt="user" />
         </div>

@@ -8,12 +8,12 @@ import PageUnderConstruction from "../../components/PageCont/PageUnderConstructi
 
 const Movements = () => {
     return (
-        <>
+        <div style={{overflow:"auto"}}>
         <Menu>
         <ContentPage caminho={[{nome: "Movimentos", link: "/movements"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={8} >
+                        <Grid item xs={12} sm={6} md={4} >
                         <PageUnderConstruction
                         Text={" Ordem de Serviço"}
                         />
@@ -34,7 +34,7 @@ const Movements = () => {
                 </Box>
         </ContentPage>
         </Menu>
-        </>
+        </div>
     );
 };
 

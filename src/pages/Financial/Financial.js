@@ -83,12 +83,12 @@ const Financial = () => {
     };
 
     return (
-        <>
+        <div style={{overflow:"auto"}}>
             <Menu>
                 <ContentPage caminho={[{ nome: "Financeiro", link: "/financial" }]}>
                     <Box >
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                            <Grid item xs={8} >
+                            <Grid item xs={12} sm={6} md={4} >
                                 <ListBox
                                     box={box} setBox={setBox} getBox={getBox}
                                     setData={setData} data={data}
@@ -115,7 +115,7 @@ const Financial = () => {
                 <CircularProgress color="inherit" />
             </Backdrop>
           <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
-        </>
+        </div>
     );
 };
 

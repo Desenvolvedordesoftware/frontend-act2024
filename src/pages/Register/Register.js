@@ -8,11 +8,12 @@ import PageUnderConstruction from "../../components/PageCont/PageUnderConstructi
 
 const Register = () => {
     return (
-        <> <Menu>
+        <div style={{overflow:"auto"}}> 
+        <Menu>
         <ContentPage caminho={[{ nome: "Cadastro", link: "/register" }]}>
            <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={8} >
+                        <Grid item xs={12} sm={6} md={4} >
                             <PageUnderConstruction
                             Text={"Clientes"}
                             />
@@ -44,7 +45,8 @@ const Register = () => {
                     </Grid>
                 </Box>    
         </ContentPage>
-        </Menu> </>
+        </Menu> 
+        </div>
     );
 };
 

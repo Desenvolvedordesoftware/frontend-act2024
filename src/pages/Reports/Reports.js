@@ -8,7 +8,8 @@ import PageUnderConstruction from "../../components/PageCont/PageUnderConstructi
 
 const Reports = () => {
     return (
-        <> <Menu>
+        <div style={{overflow:"auto"}}> 
+        <Menu>
         <ContentPage caminho={[{nome: "Relatórios", link: "/reports"}]}>
             <Box>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
@@ -75,7 +76,8 @@ const Reports = () => {
                     </Grid>
                 </Box>
         </ContentPage>
-        </Menu> </>
+        </Menu> 
+        </div>
     );
 };
 
