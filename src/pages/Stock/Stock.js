@@ -16,16 +16,17 @@ const Stock = () => {
     const usersStorage = JSON.parse(localStorage.getItem("users_db"));
     const CodCompany = usersStorage.map((user) => user.CodCompany);
     const [box, setBox] = React.useState([]);
+    const [loc, setLoc] = React.useState();
 
     const getBox = async () => {
         try {
-            const res = await axios.get(url + "/stock/productslist/" + CodCompany);
-
+            const res = await axios.get(url + "/stock/productslist/" + CodCompany + "/?loc=" + (loc === undefined ? '%': loc));
+            console.log(res)
             if (res.data.length === 0) {
                 setBox([])
                 return toast.warn("Não foi encotrado produto!");
             } else {
-                setBox(res.data.stmt);
+                setBox(res.data);
             }
         } catch (error) {
             toast.error(error);
@@ -45,6 +46,8 @@ const Stock = () => {
                                     box={box}
                                     setBox={setBox}
                                     getBox={getBox}
+                                    setLoc={setLoc}
+                                    loc={loc}
                                 />
                                 <PageUnderConstruction
                                     Text={"Nota Fiscal de Entrada"}

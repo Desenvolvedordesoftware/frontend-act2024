@@ -41,7 +41,7 @@ export const Tbody = styled.tbody`
   width: 100%;
   height: 100%;
   max-height: 950px;
-  min-height: 350px;
+  min-height: 470px;
   background-color: #343f46;
   outline: auto;
   overflow: overlay;
@@ -109,7 +109,7 @@ const style = {
 };
 
 
-const ListProducts = ({box, getBox}) => {
+const ListProducts = ({box, getBox, setLoc, loc}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [open, setOpen] = React.useState(false);
@@ -150,7 +150,8 @@ const ListProducts = ({box, getBox}) => {
               style={{ marginLeft: "5px", width: "300px", height: "30px", border: "1px solid #343f46" }}
               type='text'
               placeholder="Digite descrição do produto"
-              onChange={0} />
+              value={loc}
+              onChange={(e) => [setLoc(e.target.value)]} />
             <Button
               style={{ margin: "5px", width: "150px" }}
               component="label"

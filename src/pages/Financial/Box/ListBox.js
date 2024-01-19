@@ -40,22 +40,27 @@ export const Tbody = styled.tbody`
   height: 100%;
   max-height: 950px;
   min-height: 350px;
-  background-color: #fff;
+  background-color: #343f46;
   outline: auto;
   overflow: overlay;
   z-index: 5;
+  color: #fff;
 `;
 
 export const Tr = styled.tr`
   display: flex;
+  margin: 5px;
   justify-content: space-between;
-  border: 1px solid #343f46;
+  border-radius: 2px;
+  border: 1px solid #fff;
 `;
 
 export const Th = styled.th`
-  text-align: start;
+  display: flex;
   padding: 5px;
-  padding-bottom: 5px;
+  height: 10px;
+  justify-content: center;
+  align-items: center;
   @media (max-width: 500px) {
     ${(props) => props.onlyWeb && "display: none"}
   }
@@ -64,6 +69,7 @@ export const Th = styled.th`
 export const Td = styled.td`
   text-align: start;
   padding: 0 1px;
+  background-color: #343f46;
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
   width: ${(props) => (props.width ? props.width : "auto")};
 
@@ -322,24 +328,26 @@ const ListBox = ({ box, getBox, setData, data,
           <div>
             <Typography id="modal-modal-description" sx={{ mt: 1 }}>
               <Table>
-                <Thead>
+                <Thead >
                   <Tr
                   >
                     <Th>HISTORICO</Th>
-                    <Th Width="70px" >ValorR$</Th>
                   </Tr>
                 </Thead>
                 <Tbody >
                 {box.map((item, i) => (
                     <Tr key={i}>
-                      <Td >{item.HISTORICO}</Td>
-                      <Td >{Intl.NumberFormat('pt-br',
+                      <Td >
+                        {item.HISTORICO} 
+                        <br/>
+                      {Intl.NumberFormat('pt-br',
                       {
                           style: 'currency',
                           currency: 'BRL'
                       }).format(
                         item.VALOR
-                      )}</Td>
+                      )}
+                      </Td>
                     </Tr>
                   ))}  
                   
