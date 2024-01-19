@@ -19,13 +19,11 @@ const Div = styled.div`
 
 const Table = styled.table`
   width: 100%;
-  height: 70%;
+  height: 95%;
   background-color: #fff;
   padding: 10px;
   box-shadow: 0px 0px 5px #ccc;
   border-radius: 5px;
-  max-width: 1900px;
-  word-break: break-all;
   font-size: 12px;
   backdrop-filter: blur(5.5px);
 `;
@@ -35,22 +33,28 @@ export const Thead = styled.thead`
 
 export const Tbody = styled.tbody`
   position: fixed;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-sizing: 'border-box';
   width: 100%;
-  background-color: #fff;
+  height: 100%;
+  max-height: 950px;
   min-height: 350px;
-  max-height: 350px;
+  background-color: #fff;
   outline: auto;
-  overflow-y: scroll;
+  overflow: overlay;
   z-index: 5;
 `;
 
-export const Tr = styled.tr``;
+export const Tr = styled.tr`
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #343f46;
+`;
 
 export const Th = styled.th`
   text-align: start;
   padding: 5px;
-  border-bottom: inset;
   padding-bottom: 5px;
   @media (max-width: 500px) {
     ${(props) => props.onlyWeb && "display: none"}
@@ -58,8 +62,8 @@ export const Th = styled.th`
 `;
 
 export const Td = styled.td`
-  text-align: center;
-  padding: 0 5px;
+  text-align: start;
+  padding: 0 1px;
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
   width: ${(props) => (props.width ? props.width : "auto")};
 
@@ -89,16 +93,16 @@ const InputArea = styled.div`
 
 const style = {
   position: 'absolute',
-  margin: 0,
-  padding: 0,
   boxSizing: 'border-box',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   bgcolor: '#343f46',
   border: '2px solid #000',
   p: 1,
-  overflow: 'hidden'
+  overflow: 'overlay'
 };
+const Title = styled.div`
+`;
 
 const ListBox = ({ box, getBox, setData, data,
   totalDinheiro,
@@ -142,6 +146,7 @@ const ListBox = ({ box, getBox, setData, data,
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Title>
             <div>
               <InputArea>
                 <Typography style={{ color: "#fff" }}>
@@ -312,6 +317,7 @@ const ListBox = ({ box, getBox, setData, data,
                 </Grid>
               </div>
             </div>
+          </Title>
           </Typography>
           <div>
             <Typography id="modal-modal-description" sx={{ mt: 1 }}>
@@ -319,17 +325,21 @@ const ListBox = ({ box, getBox, setData, data,
                 <Thead>
                   <Tr
                   >
-                    <Th width="79%">HISTORICO</Th>
-                    <Th></Th>
-                    <Th width="21%">ValorR$</Th>
+                    <Th>HISTORICO</Th>
+                    <Th Width="70px" >ValorR$</Th>
                   </Tr>
                 </Thead>
                 <Tbody >
                 {box.map((item, i) => (
                     <Tr key={i}>
-                      <Td width="80%">{item.HISTORICO}</Td>
-                      <Td>=</Td>
-                      <Td width="20%">R$ {item.VALOR}</Td>
+                      <Td >{item.HISTORICO}</Td>
+                      <Td >{Intl.NumberFormat('pt-br',
+                      {
+                          style: 'currency',
+                          currency: 'BRL'
+                      }).format(
+                        item.VALOR
+                      )}</Td>
                     </Tr>
                   ))}  
                   

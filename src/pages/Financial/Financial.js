@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ContentPage from "../../components/Content/ContentPage";
 import Menu from "../../components/Menu/Menu";
 import { url } from "../../function/FunctionR";

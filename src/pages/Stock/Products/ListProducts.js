@@ -1,97 +1,118 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import styled from "styled-components";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 import {
   Button,
 } from '@mui/material';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import Modal from '@mui/material/Modal';
-import DataTable from 'react-data-table-component';
-import { url } from '../../../function/FunctionR';
+import Typography from "@mui/material/Typography";
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+`;
+
+const Table = styled.table`
+   width: 100%;
+  height: 95%;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0px 0px 5px #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  backdrop-filter: blur(5.5px);
+`;
+
+export const Thead = styled.thead`
+`;
+
+export const Tbody = styled.tbody`
+   position: fixed;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-sizing: 'border-box';
+  width: 100%;
+  height: 100%;
+  max-height: 950px;
+  min-height: 350px;
+  background-color: #343f46;
+  outline: auto;
+  overflow: overlay;
+  z-index: 5;
+  color: #fff;
+`;
+
+export const Tr = styled.tr`
+  display: flex;
+  margin: 5px;
+  justify-content: space-between;
+  border-radius: 2px;
+  border: 1px solid #fff;
+`;
+
+export const Th = styled.th`
+  text-align: start;
+  padding: 5px;
+  padding-bottom: 5px;
+  @media (max-width: 500px) {
+    ${(props) => props.onlyWeb && "display: none"}
+  }
+`;
+
+export const Td = styled.td`
+ text-align: start;
+  padding: 0 1px;
+  background-color: #343f46;
+  text-align: ${(props) => (props.alignCenter ? "center" : "start")};
+  width: ${(props) => (props.width ? props.width : "auto")};
+
+  @media (max-width: 500px) {
+    ${(props) => props.onlyWeb && "display: none"}
+  }
+`;
+
+const Loc = styled.input`
+  padding: 0 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  height: 40px;
+  width: 200px;
+  font-size: 12px;
+`;
+
+const InputArea = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  margin-left: 10px;
+  gap: 20px;
+  padding: 0px;
+  justify-content: space-between;
+`;
 
 const style = {
   position: 'absolute',
-  margin: 0,
-  padding: 0,
   boxSizing: 'border-box',
   width: '100%',
-  height: '100%',
-  bgcolor: 'background.paper',
+  height: '100vh',
+  bgcolor: '#343f46',
   border: '2px solid #000',
   p: 1,
-  overflow: 'hidden'
+  overflow: 'overlay'
 };
 
-export const Div = styled.div`
-    display: flex;
-    justify-content: space-between;
-    background: #343f46;
-    align-items: center;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(5.5px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    
-`;
 
-
-const ListProducts = () => {
-  const usersStorage = JSON.parse(localStorage.getItem("users_db"));
-  const CodCompany = usersStorage.map((user) => user.CodCompany);
-  const [open, setOpen] = React.useState(false);
+const ListProducts = ({box, getBox}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [box, setBox] = React.useState([]);
-  const [records, setRecords] = React.useState(box);
-
-  const getBox = async () => {
-    
-
-    try {
-        const res = await axios.get(url + "/stock/productslist/" + CodCompany);
-       
-        if (res.status === 200) {
-          setBox(res.data.stmt);
-        } else {
-          setBox([])
-          return toast.warn("Não foi encotrado movimentações!");
-        }
-    } catch (error) {
-        toast.error(error);
-    }
-  }
-
-  const columns = [
-    {
-      name: 'Descrição',
-      selector: row => row.PRODUTO,
-      sortable: true
-    },
-    {
-      name: 'Valor R$',
-      selector: row => row.PRECOVENDA,
-      sortable: true
-    },
-    {
-      name: 'Estoque',
-      selector: row => row.ESTOQUE,
-      sortable: true
-    }
-  ];
-  React.useEffect(() => {
-    getBox();
-    return;
-}, []);
-
-  function handleFilter(event) {
-    const newData = box.filter(row => {
-      return row.PRODUTO.toLowerCase().includes(event.target.value.toLowerCase())
-    })
-    setRecords(newData)
-  }
+  const [open, setOpen] = React.useState(false);
 
   return (
     <div>
@@ -111,33 +132,61 @@ const ListProducts = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Div className='text-end' >
-            <input 
-            style={{marginLeft:"5px", width: "300px", height:"30px", border:"1px solid #343f46" }} 
-            type='text'
-            placeholder="Digite descrição do produto" 
-            onChange={handleFilter} />
-          <Button
-            style={{ margin: "5px", width: "150px" }}
-            component="label"
-            variant="contained"
-            startIcon={<AssignmentIndIcon />}
-            onClick={handleClose}
-          >
-            Fechar
-          </Button>
-          </Div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100%", gap: "5px" }} >
-
-            <DataTable
-              columns={columns}
-              data={records}
-              selectableRows
-              fixedHeader
-              pagination
+          <InputArea>
+            <Typography style={{ color: "#fff" }}>
+              Lista Produtos
+            </Typography>
+            <Button
+              style={{ margin: "5px", width: "100px", fontSize: "12px" }}
+              component="label"
+              variant="contained"
+              onClick={handleClose}
             >
-            </DataTable>
+              Fechar
+            </Button>
+          </InputArea>
+          <Div style={{ alignItems: "center" }} >
+            <Loc
+              style={{ marginLeft: "5px", width: "300px", height: "30px", border: "1px solid #343f46" }}
+              type='text'
+              placeholder="Digite descrição do produto"
+              onChange={0} />
+            <Button
+              style={{ margin: "5px", width: "150px" }}
+              component="label"
+              variant="contained"
+              startIcon={<AssignmentIndIcon />}
+              onClick={getBox}
+            >
+              Localizar
+            </Button>
+          </Div>
+
+          <div>
+            <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+              <Table>
+                <Tbody >
+                  {box === undefined ? [] : box.map((item, i) => (
+                    <Tr key={i}>
+                      <Td >
+                        Codigo: {item.CODIGO} <br/>Descrição: {item.PRODUTO} / Unidade: {item.UNIDADE}<br/>
+                        Valor: {Intl.NumberFormat('pt-br',
+                          {
+                            style: 'currency',
+                            currency: 'BRL'
+                          }).format(
+                            item.PRECOVENDA
+                          )}<br/> 
+                          Estoque: {item.ESTOQUE} / PESO: {item.PESO}<br/>
+                          </Td>
+                    </Tr>
+                  ))}
+
+                </Tbody>
+              </Table>
+            </Typography>
           </div>
+
         </Box>
       </Modal>
     </div>
