@@ -12,8 +12,6 @@ import ListToReceive from "./BillsToReceive/ListToReceive";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 
 const Financial = () => {
     const usersStorage = JSON.parse(localStorage.getItem("users_db"));
@@ -39,20 +37,30 @@ const Financial = () => {
     let dataAtualFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-" + adicionaZero(dataAtual.getDate().toString()));
 
     const [data, setData] = useState(dataAtualFormatada);
-    const [open, setOpen] = React.useState(false);
+    const [openL, setOpenL] = React.useState(false);
+
     const handleClose = () => {
-    setOpen(false);
+        setOpenL(false);
     };
     const handleOpen = () => {
-    setOpen(true);
+        setOpenL(true);
     };
 
     const getBox = async () => {
+        setBox([]);
+        setTotalDinheiro(0);
+        setTotalPix(0);
+        setTotalCredito(0);
+        setTotalDebito(0);
+        setTotalAprazo(0);
+        setTotalChAp(0);
+        setTotalEntradas(0);
+        setTotalSaidas(0);
 
         try {
             const res = await axios.get(url + "/box/" + CodCompany + "/" + data);
             if (res.data.length === 0) {
-                setBox([])
+                setBox([]);
                 return toast.warn("Não foi encotrado movimentações!");
             } else {
                 setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
@@ -100,6 +108,7 @@ const Financial = () => {
                                     totalChAp={totalChAp}
                                     totalEntradas={totalEntradas}
                                     totalSaidas={totalSaidas}
+                                    openL={openL}
                                 />
                                 <ListToPay />
                                 <ListToReceive />
@@ -108,12 +117,6 @@ const Financial = () => {
                     </Box>
                 </ContentPage>
             </Menu> 
-            <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 5}}
-                open={open}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
           <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
         </div>
     );

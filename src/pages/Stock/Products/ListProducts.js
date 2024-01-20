@@ -8,6 +8,8 @@ import {
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import Modal from '@mui/material/Modal';
 import Typography from "@mui/material/Typography";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Div = styled.div`
   display: flex;
@@ -67,7 +69,8 @@ export const Th = styled.th`
 `;
 
 export const Td = styled.td`
- text-align: start;
+  display: block;
+  text-align: start;
   padding: 0 1px;
   background-color: #343f46;
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
@@ -109,7 +112,7 @@ const style = {
 };
 
 
-const ListProducts = ({box, getBox, setLoc, loc}) => {
+const ListProducts = ({box, getBox, setLoc, loc, openL}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [open, setOpen] = React.useState(false);
@@ -134,7 +137,7 @@ const ListProducts = ({box, getBox, setLoc, loc}) => {
         <Box sx={style}>
           <InputArea>
             <Typography style={{ color: "#fff" }}>
-              Lista Produtos
+              Lista Produtos = { box.length }
             </Typography>
             <Button
               style={{ margin: "5px", width: "100px", fontSize: "12px" }}
@@ -170,15 +173,17 @@ const ListProducts = ({box, getBox, setLoc, loc}) => {
                   {box === undefined ? [] : box.map((item, i) => (
                     <Tr key={i}>
                       <Td >
-                        Codigo: {item.CODIGO} <br/>Descrição: {item.PRODUTO} / Unidade: {item.UNIDADE}<br/>
-                        Valor: {Intl.NumberFormat('pt-br',
+                        <Td>Codigo: {item.CODIGO} <br/>Descrição: {item.PRODUTO} / Unidade: {item.UNIDADE}</Td>
+                         <Td>            
+                          Valor: {Intl.NumberFormat('pt-br',
                           {
                             style: 'currency',
                             currency: 'BRL'
                           }).format(
                             item.PRECOVENDA
-                          )}<br/> 
-                          Estoque: {item.ESTOQUE} / PESO: {item.PESO}<br/>
+                          )}</Td>
+                          <Td> 
+                          Estoque: {item.ESTOQUE} / PESO: {item.PESO}</Td>
                           </Td>
                     </Tr>
                   ))}
@@ -187,7 +192,12 @@ const ListProducts = ({box, getBox, setLoc, loc}) => {
               </Table>
             </Typography>
           </div>
-
+          <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 5}}
+              open={openL}
+          >
+              <CircularProgress color="inherit" />
+          </Backdrop>
         </Box>
       </Modal>
     </div>

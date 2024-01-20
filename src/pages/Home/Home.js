@@ -49,6 +49,13 @@ const Home = () => {
     
     async function getSalesForm() {
         handleOpen();
+        setTotalDinheiro(0);
+        setTotalPix(0);
+        setTotalCredito(0);
+        setTotalDebito(0);
+        setTotalAprazo(0);
+        setTotalChAp(0);
+
         await axios.get(url + "/box/sumbox/" + CodCompany + "/" + dataI + "/" + dataF).then(async function (response) {
 
             response.data.map((dados) => {
@@ -68,7 +75,8 @@ const Home = () => {
 
     React.useEffect(() => {
         getSalesForm();
-    }, []);
+        return;
+    },[]);
 
     return (
         <div style={{overflow:"auto"}}>

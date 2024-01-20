@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Div = styled.div`
   display: flex;
@@ -67,6 +69,7 @@ export const Th = styled.th`
 `;
 
 export const Td = styled.td`
+  display: block;
   text-align: start;
   padding: 0 1px;
   background-color: #343f46;
@@ -118,7 +121,9 @@ const ListBox = ({ box, getBox, setData, data,
   totalAprazo,
   totalChAp,
   totalEntradas,
-  totalSaidas, }) => {
+  totalSaidas,
+  openL 
+}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -338,8 +343,10 @@ const ListBox = ({ box, getBox, setData, data,
                 {box.map((item, i) => (
                     <Tr key={i}>
                       <Td >
+                        <Td>
                         {item.HISTORICO} 
-                        <br/>
+                        </Td>
+                        <Td>
                       {Intl.NumberFormat('pt-br',
                       {
                           style: 'currency',
@@ -348,6 +355,7 @@ const ListBox = ({ box, getBox, setData, data,
                         item.VALOR
                       )}
                       </Td>
+                      </Td>
                     </Tr>
                   ))}  
                   
@@ -355,9 +363,14 @@ const ListBox = ({ box, getBox, setData, data,
               </Table>
             </Typography>
           </div>
+          <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 5}}
+              open={openL}
+          >
+              <CircularProgress color="inherit" />
+          </Backdrop>
         </Box>
       </Modal>
-      
     </div>
   );
 };

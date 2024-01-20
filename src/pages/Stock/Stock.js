@@ -17,22 +17,34 @@ const Stock = () => {
     const CodCompany = usersStorage.map((user) => user.CodCompany);
     const [box, setBox] = React.useState([]);
     const [loc, setLoc] = React.useState();
+    
+    const [openL, setOpenL] = React.useState(false);
+    
+    const handleClose = () => {
+        setOpenL(false);
+    };
+    const handleOpen = () => {
+        setOpenL(true);
+    };
+
 
     const getBox = async () => {
+        handleOpen();
+        setBox([])
         try {
             const res = await axios.get(url + "/stock/productslist/" + CodCompany + "/?loc=" + (loc === undefined ? '%': loc));
-            console.log(res)
+          
             if (res.data.length === 0) {
-                setBox([])
+                handleClose();
                 return toast.warn("Não foi encotrado produto!");
             } else {
                 setBox(res.data);
             }
         } catch (error) {
             toast.error(error);
+            handleClose();
         }
-        
-        console.log(box)
+        handleClose();
     }
 
     return (
@@ -48,6 +60,7 @@ const Stock = () => {
                                     getBox={getBox}
                                     setLoc={setLoc}
                                     loc={loc}
+                                    openL={openL}
                                 />
                                 <PageUnderConstruction
                                     Text={"Nota Fiscal de Entrada"}
