@@ -41,8 +41,8 @@ const Home = () => {
             return numero;
     }
     let dataAtual = new Date();
-    let dataIFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-" +  "01");
-    let dataFFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-" +  adicionaZero(dataAtual.getDate().toString()));
+    let dataIFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-"+adicionaZero(dataAtual.getDate().toString()));
+    let dataFFormatada = (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth() + 1).toString()) + "-"+adicionaZero(dataAtual.getDate().toString()));
 
     const dataI = React.useState(dataIFormatada);
     const dataF = React.useState(dataFFormatada);

@@ -95,7 +95,7 @@ export default function ChartSalesMonthColun({ totalDinheiro, totalPix, totalCre
                                 </Grid>
                                 <Grid item xs={12} sm={8} md={4}>
                                     <Div style={{ padding: "8px" }}>
-                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Vendas Cheque Ap</Typography>
+                                        <Typography style={{ color: "#02b3d4", fontSize:"12px"  }} >Vendas Deposito/Transf</Typography>
                                         <Typography style={{ color: "#000", fontSize:"12px"  }} >
                                         {Intl.NumberFormat('pt-br',
                                                 {

@@ -28,7 +28,7 @@ export default function ChartSalesDay({
       return numero;
   }
   let dataAtual = new Date();
-  let dataFormatada = ((adicionaZero(dataAtual.getMonth() + 1).toString()) + "/" + (dataAtual.getFullYear()));
+  let dataFormatada = ((adicionaZero(dataAtual.getDate().toString())+"/"+ adicionaZero(dataAtual.getMonth() + 1).toString()) + "/" + (dataAtual.getFullYear()));
 
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
 
@@ -41,7 +41,7 @@ export default function ChartSalesDay({
     fill: theme.palette.text.primary,
     textAnchor: 'middle',
     dominantBaseline: 'central',
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: "fantasy"
   }));
   const size = {

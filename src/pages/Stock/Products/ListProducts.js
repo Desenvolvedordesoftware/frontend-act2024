@@ -41,12 +41,10 @@ export const Tbody = styled.tbody`
   margin-bottom: 5px;
   box-sizing: 'border-box';
   width: 100%;
-  height: 100%;
-  max-height: 950px;
-  min-height: 470px;
+  height: calc(100vh - 160px);
   background-color: #343f46;
   outline: auto;
-  overflow: overlay;
+  overflow-y: scroll;
   z-index: 5;
   color: #fff;
 `;
@@ -108,7 +106,7 @@ const style = {
   bgcolor: '#343f46',
   border: '2px solid #000',
   p: 1,
-  overflow: 'overlay'
+  overflow: 'hidden'
 };
 
 

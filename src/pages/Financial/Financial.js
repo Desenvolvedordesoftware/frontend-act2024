@@ -47,6 +47,7 @@ const Financial = () => {
     };
 
     const getBox = async () => {
+        handleOpen();
         setBox([]);
         setTotalDinheiro(0);
         setTotalPix(0);
@@ -69,7 +70,6 @@ const Financial = () => {
             toast.error(error);
         };
         
-        handleOpen();
         await axios.get(url + "/box/sumbox/" + CodCompany + "/" + data + "/" + data).then(async function (response) {
 
             response.data.map((dados) => {
