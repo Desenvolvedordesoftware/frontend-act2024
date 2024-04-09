@@ -14,7 +14,6 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [error, setError] = useState("");
 
     const handleLogin = () => {
  
@@ -26,7 +25,7 @@ const Login = () => {
         const res = signin(email, senha);
 
         if (res) {
-            setError(res);
+            toast.warn(res);
             return;
         }else{
             navigate("/home");
@@ -43,17 +42,17 @@ const Login = () => {
                     type="email"
                     placeholder="Digite seu E-mail!"
                     value={email}
-                    onChange={(e) => [setEmail(e.target.value), setError("")]}
+                    onChange={(e) => [setEmail(e.target.value)]}
                 />
                 <Input 
                     type="password"
                     placeholder="Digite sua Senha!"
                     value={senha}
-                    onChange={(e) => [setSenha(e.target.value), setError("")]}
+                    onChange={(e) => [setSenha(e.target.value)]}
                 />
                 <Button Text="Entrar" onClick={handleLogin}/>
                 <div>
-                    <p>Não possui conta? <Link style={{color:"#02b3d4"}} >WhatSapp</Link></p>
+                    <p>Não possui conta? <Link to={'https://api.whatsapp.com/send?phone=5594992565280&text=Ol%C3%A1,%20'} style={{color:"#02b3d4"}} >WhatSapp</Link></p>
                     <FloatingWhatsApp 
                       phoneNumber='94992565280'
                       avatar='./images/LogoEmpresa.png'

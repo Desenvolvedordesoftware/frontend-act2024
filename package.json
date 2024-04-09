@@ -2,6 +2,7 @@
   "name": "acthauros-app",
   "version": "0.1.51",
   "private": true,
+  "homepage": "https://acthauros.com.br",
   "author": {
     "name": "Wilson C. Brito",
     "email": "wilson.engenhariasoftware@gmail.com"

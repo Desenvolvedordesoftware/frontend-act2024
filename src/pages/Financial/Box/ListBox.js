@@ -39,7 +39,7 @@ export const Tbody = styled.tbody`
   margin-bottom: 5px;
   box-sizing: 'border-box';
   width: 100%;
-  height: calc(100vh - 380px);
+  height: calc(100vh - 330px);
   background-color: #343f46;
   outline: auto;
   overflow-y: scroll;

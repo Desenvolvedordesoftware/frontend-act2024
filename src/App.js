@@ -13,7 +13,7 @@ import useAuth from "./hooks/useAuth";
 const Private = ({ Item }) => {
   const { signed } = useAuth();
 
-  return signed > 0 ? Item : <Login />;
+  return signed ? Item : <Login />;
 }; 
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
       <Fragment>
           <Routes>
             <Route exact path="/" element={<Private Item={<Home/>}/>} />
-            <Route exact path="400" element={<Private Item={<Home/>}/>} />
             <Route exact path="*" element={<Private Item={<Home/>}/>} />
             <Route exact path="%" element={<Private Item={<Home/>}/>} />
             <Route exact path="/financial" element={<Private Item={<Financial/>}/>} />
