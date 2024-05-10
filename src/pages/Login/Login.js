@@ -60,7 +60,7 @@ const Login = () => {
                       statusMessage='Sistemas de Gestão Comercial'
                       chatMessage='Agradece seu contato. Como podemos ajudar?'
                       placeholder='Digite uma mensagem'
-                      
+                      buttonClassName="https://api.whatsapp.com/send?phone=5594992565280&text=Ol%C3%A1,%20"
                     />
                 </div>
                  <h6>Versão: 0.1.98</h6>

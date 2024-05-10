@@ -62,9 +62,11 @@ const Financial = () => {
             const res = await axios.get(url + "/box/" + CodCompany + "/" + data);
             if (res.data.length === 0) {
                 setBox([]);
+                handleClose();
                 return toast.warn("Não foi encotrado movimentações!");
             } else {
                 setBox(res.data.stmt.sort((a, b) => (a.box > b.box ? 1 : -1)));
+                handleClose();
             }
         } catch (error) {
             toast.error(error);
